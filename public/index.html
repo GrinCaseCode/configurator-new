@@ -1,0 +1,3446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" data-parameters='{
+    "1": {
+        "NAME": "HPE Proliant BL460с Gen8",
+        "ID": "61",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/913\/6djdk7e2oss4imjvi39zy96vi5emmf7s.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "9 638",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "ЦОД ММТС-9 (М9)"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon E5-2650v2 (8 x 2.6 Ghz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon E5-2660v2 (10 x 2.2Ghz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon E5-2667v2 (8 x 3.3Ghz)"
+                    },
+                    {
+                        "price": 2000,
+                        "title": "2 x Xeon E5-2680v2 (10 x 2.8Ghz)"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "2 x Xeon E5-2690v2 (10 x 3.0Ghz)"
+                    },
+                    {
+                        "price": 3600,
+                        "title": "2 x Xeon E5-2695v2 (12 x 2.4Ghz)"
+                    },
+                    {
+                        "price": 4800,
+                        "title": "2 x Xeon E5-2697v2 (12 x 2.7Ghz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 600,
+                        "title": "ECC DDR3-1866 (1x32Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P220i 512mb BBWC"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "max": 1,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "Нет"
+                    },
+                    {
+                        "price": 8499,
+                        "title": "HPE StorageWorks D2220sb"
+                    }
+                ]
+            },
+            "DISKS3": {
+                "name": "Диски 3",
+                "code": "DISKS3",
+                "chetnoe": false, 
+                "dependence": "DISKS2",
+                "max": 3,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "2": {
+        "NAME": "HPE Proliant BL460с Gen9",
+        "ID": "63",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/ae3\/dwqci1mt3vf957v0urcx8zpy5ydqbffn.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "12 316",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "ЦОД ММТС-9 (М9)"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon E5-2620v4 (10 x 2.1GHz)"
+                    },
+                    {
+                        "price": 400,
+                        "title": "2 x Xeon E5-2623v4 (4 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon E5-2630v4 (10 x 2.2GHz)"
+                    },
+                    {
+                        "price": 1200,
+                        "title": "2 x Xeon E5-2640v4 (10 x 2.4GHz)"
+                    },
+                    {
+                        "price": 2000,
+                        "title": "2 x Xeon E5-2650v4 (12 x 2.2GHz)"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "2 x Xeon E5-2643v4 (6 x 3.4GHz)"
+                    },
+                    {
+                        "price": 3600,
+                        "title": "2 x Xeon E5-2667v4 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 4800,
+                        "title": "2 x Xeon E5-2695v4 (18 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon E5-2698v4 (20 x 2.2GHz)"
+                    },
+                    {
+                        "price": 15400,
+                        "title": "2 x Xeon E5-2699v4 (22 x 2.2GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "max": 4,
+                        "price": 1000,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2000,
+                        "title": "ECC DDR4-2400 (1x64Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P244br\/1GB FBWC 12Gb 2-ports Int SAS"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 8499,
+                        "title": "HPE StorageWorks D2220sb"
+                    }
+                ]
+            },
+            "DISKS3": {
+                "name": "Диски 3",
+                "code": "DISKS3",
+                "chetnoe": false,
+                "dependence": "DISKS2",
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "3": {
+        "NAME": "HPE BL460 Gen 10",
+        "ID": "69",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/33a\/100nbcn1014mctiotxv9gegceim8nkrz.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "18 563",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "ЦОД ММТС-9 (М9)"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P204i-b SR Gen10 12G SAS Modular Controller (804367-B21)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 8499,
+                        "title": "HPE StorageWorks D2220sb"
+                    }
+                ]
+            },
+            "DISKS3": {
+                "name": "Диски 3",
+                "code": "DISKS3", 
+                "chetnoe": false,
+                "dependence": "DISKS2",
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "4": {
+        "NAME": "HPE Synergy 480 Gen10 NVME",
+        "ID": "68",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/eb4\/yb05kr8yrsnzt9llbvhrormtppvm8ug6.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "23 918",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 57200,
+                        "title": "2 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 65200,
+                        "title": "2 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 14800,
+                        "title": "2 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 33200,
+                        "title": "2 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 69200,
+                        "title": "2 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x 1.6TB U.2 NVMe x4 SSD 2.5\" HPE"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x 3.84TB U.2 NVMe x4 SSD 2.5\" Intel"
+                    },
+                    {
+                        "price": 26400,
+                        "title": "2 x 7.68TB U.2 NVMe x4 SSD 2.5\" Intel"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "5": {
+        "NAME": "HPE DL580 Gen9",
+        "ID": "73",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/be2\/4oyexel3sti8xamomzcvzfp7na615io1.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "67 472",
+        "FILTER": " GPU ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "4 x Xeon E7-8867v4 (18 x 2.4Ghz)"
+                    },
+                    {
+                        "price": 27200,
+                        "title": "4 x Xeon E7-8880v4 (22 x 2.2Ghz)"
+                    },
+                    {
+                        "price": 33600,
+                        "title": "4 x Xeon E7-8890v4 (24 x 2.2Ghz)"
+                    }
+                ]
+            },
+            "VIDEO_ADAPTERS": {
+                "name": "Видеоадаптеры",
+                "code": "VIDEO_ADAPTERS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "4 x 16Gb HPE NVIDIA Tesla P100 PCIe"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1000,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P830i\/4GB FBWC 12Gbps SAS controller"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "6": {
+        "NAME": "HPE ProLiant m710x",
+        "ID": "62",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/16a\/1845o58kqqpr7kct0nn01n5ttx77y4d5.png",
+        "DETAIL_PICTURE": "\/upload\/iblock\/16a\/1845o58kqqpr7kct0nn01n5ttx77y4d5.png",
+        "PRICE": "4462",
+        "FILTER": " MICROSERVERS ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 x Xeon E3-1585Lv5 (4 x 3.1GHz), видеокарта  Intel Iris Pro Graphics P580"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 16,
+                        "price": 500,
+                        "title": "ECC DDR4-2400 (1х16Gb) SO-DIMM, HPE"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 500,
+                        "title": "HPE 480Gb 6G SATA SSD-M, HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 800,
+                        "title": "HPE 480Gb PCI-E X4 NVMe, HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 600,
+                        "title": "200GB"
+                    },
+                    {
+                        "price": 1500,
+                        "title": "500GB"
+                    },
+                    {
+                        "price": 3000,
+                        "title": "1000GB"
+                    },
+                    {
+                        "price": 4500,
+                        "title": "1500GB"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2000GB"
+                    },
+                    {
+                        "price": 9000,
+                        "title": "3000GB"
+                    },
+                    {
+                        "price": 12000,
+                        "title": "4000GB"
+                    },
+                    {
+                        "price": 15000,
+                        "title": "5000GB"
+                    }
+                ]
+            }
+        }
+    },
+    "7": {
+        "NAME": "HPE Proliant DL380 Gen9",
+        "ID": "65",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/db4\/d86hfa80voh9jsamrsruo8pf7n9su14p.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "19 545",
+        "FILTER": " STORAGE ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon E5-2620v4 (10 x 2.1GHz)"
+                    },
+                    {
+                        "price": 400,
+                        "title": "2 x Xeon E5-2623v4 (4 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon E5-2630v4 (10 x 2.2GHz)"
+                    },
+                    {
+                        "price": 1200,
+                        "title": "2 x Xeon E5-2640v4 (10 x 2.4GHz)"
+                    },
+                    {
+                        "price": 2000,
+                        "title": "2 x Xeon E5-2650v4 (12 x 2.2GHz)"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "2 x Xeon E5-2643v4 (6 x 3.4GHz)"
+                    },
+                    {
+                        "price": 3600,
+                        "title": "2 x Xeon E5-2667v4 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 4800,
+                        "title": "2 x Xeon E5-2695v4 (18 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon E5-2698v4 (20 x 2.2GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1000,
+                        "max": 4,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2000,
+                        "title": "ECC DDR4-2400 (1x64Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P440\/2GB FBWC 12Gb 1-port Int SAS Controller (830057-001) + 12Gb SAS Expander (727250-B21)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 1000,
+                        "value": 8000,
+                        "title": "8TB HDD SAS 12G 3.5\" HPE"
+                    },
+                    {
+                        "price": 3200,
+                        "value": 18000,
+                        "title": "18TB HDD SAS 12G 3.5\" Seagate"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    },
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "8": {
+        "NAME": "HPE Synergy 480 Gen10",
+        "ID": "66",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/eb4\/yb05kr8yrsnzt9llbvhrormtppvm8ug6.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "20 348",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 57200,
+                        "title": "2 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 65200,
+                        "title": "2 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 14800,
+                        "title": "2 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 33200,
+                        "title": "2 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 69200,
+                        "title": "2 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1000,
+                        "max": 4,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2000,
+                        "title": "ECC DDR4-2400 (1x64Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P204I-C\/1GB FBWC 12GB GEN10 Controller (804426-001)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "9": {
+        "NAME": "HP Proliant BL660c Gen9",
+        "ID": "67",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/8de\/38ihzcnewrho22jf0i7nfdrbfw39zqhc.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "31 861",
+        "FILTER": " CPU4 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "4 x Xeon E5-4669v4 (22 x 2.2GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1000,
+                        "max": 4,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2000,
+                        "title": "ECC DDR4-2400 (1x64Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P246br\/1GB FBWC 12Gb 4-ports Int SAS (726793-B21)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "10": {
+        "NAME": "APPOLO 4510 gen10",
+        "ID": "64",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/d3b\/2e6mjmqb43w8g8tyznv3fenpv4j2bb6a.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "41 857",
+        "FILTER": " STORAGE ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 57200,
+                        "title": "2 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 65200,
+                        "title": "2 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 14800,
+                        "title": "2 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 33200,
+                        "title": "2 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 69200,
+                        "title": "2 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P440\/2GB FBWC 12Gb 1-port Int SAS Controller"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 1000,
+                        "value": 8000,
+                        "title": "8TB HDD SAS 12G 3.5\" HPE"
+                    },
+                    {
+                        "price": 3200,
+                        "value": 18000,
+                        "title": "18TB HDD SAS 12G 3.5\" Seagate"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "11": {
+        "NAME": "HPE Synergy 660 Gen10",
+        "ID": "75",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/300\/b6yj7mjz1b60ylf8ba9vhd775dgpq1gw.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "32754",
+        "FILTER": " CPU4 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "4 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "4 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "4 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 6400,
+                        "title": "4 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 12000,
+                        "title": "4 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 26400,
+                        "title": "4 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 114400,
+                        "title": "4 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 130400,
+                        "title": "4 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 16800,
+                        "title": "4 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 22400,
+                        "title": "4 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 29600,
+                        "title": "4 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 66400,
+                        "title": "4 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 138400,
+                        "title": "4 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P204I-C\/1GB FBWC 12GB GEN10 Controller (804426-001)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "12": {
+        "NAME": "HPE DL380 Gen10 8SFF",
+        "ID": "71",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/ecb\/g1pihb48ltiyteh0xuudhmitmm60i08m.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "35 342",
+        "FILTER": " GPU ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 57200,
+                        "title": "2 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 65200,
+                        "title": "2 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 14800,
+                        "title": "2 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 33200,
+                        "title": "2 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 69200,
+                        "title": "2 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "VIDEO_ADAPTERS": {
+                "name": "Видеоадаптеры",
+                "code": "VIDEO_ADAPTERS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "16Gb HPE NVIDIA Tesla P100 PCIe"
+                    },
+                    {
+                        "price": 7300,
+                        "title": "2 x 16Gb HPE NVIDIA Tesla P100 PCIe"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array E208i-a SR Gen10 12G SAS Modular Controller (836259-001)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    },
+                    {
+                        "price": 0,
+                        "title": "20 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 2500,
+                        "title": "20 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "13": {
+        "NAME": "HPE DL380 Gen10 24SFF",
+        "ID": "70",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/662\/bn5ukholn0hjs9m376wljt3fssllug4z.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "30 166",
+        "FILTER": " CPU2 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon Gold 6142 (16 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon Gold 6134 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 1600,
+                        "title": "2 x Xeon Gold 6148 (20 x 2.4GHz)"
+                    },
+                    {
+                        "price": 3200,
+                        "title": "2 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 6000,
+                        "title": "2 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 13200,
+                        "title": "2 x Xeon-Gold 6230 (20 x 2.1GHz)"
+                    },
+                    {
+                        "price": 57200,
+                        "title": "2 x Xeon Gold 6246R (16 x 3.4GHz)"
+                    },
+                    {
+                        "price": 65200,
+                        "title": "2 x Xeon Gold 6248R (24 x 3.0GHz)"
+                    },
+                    {
+                        "price": 8400,
+                        "title": "2 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 14800,
+                        "title": "2 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 33200,
+                        "title": "2 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 69200,
+                        "title": "2 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array E208i-a SR Gen10 12G SAS Modular Controller (836259-001)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    },
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "14": {
+        "NAME": "HPE DL560 Gen10",
+        "ID": "72",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/c11\/82najrrmcukihqjnsvygjoin1wo3ri44.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "44 356 ",
+        "FILTER": " CPU4 ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "4 x Xeon Gold 6148 (20 x 2.4Ghz)"
+                    },
+                    {
+                        "price": 6400,
+                        "title": "4 x Xeon Gold 6150 (18 x 2.7GHz)"
+                    },
+                    {
+                        "price": 12000,
+                        "title": "4 x Xeon Gold 6152 (22 x 2.1GHz)"
+                    },
+                    {
+                        "price": 16800,
+                        "title": "4 x Xeon Platinum 8160 (24 x 2.1GHz)"
+                    },
+                    {
+                        "price": 22400,
+                        "title": "4 x Xeon Platinum 8165 (24 x 2.3GHz)"
+                    },
+                    {
+                        "price": 29600,
+                        "title": "4 x Xeon Platinum 8168 (24 x 2.7GHz)"
+                    },
+                    {
+                        "price": 66400,
+                        "title": "4 x Xeon Platinum 8260 (24 x 2.4GHz)"
+                    },
+                    {
+                        "price": 138400,
+                        "title": "4 x Xeon Platinum 8268 (24 x 2.9GHz)"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1200,
+                        "max": 4,
+                        "title": "ECC DDR4-2666 (1x32GB), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2100,
+                        "title": "ECC DDR4-2666 (1x64GB), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array E208i-a SR Gen10 12G SAS Modular Controller (836259-001)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "DISKS2": {
+                "name": "Диски 2",
+                "code": "DISKS2",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    },
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    },
+    "15": {
+        "NAME": "WS460 Gen9",
+        "ID": "74",
+        "PREVIEW_PICTURE": "\/upload\/iblock\/375\/d61e1cpxmg22asajrn0bk6eel0k6wc6y.png",
+        "DETAIL_PICTURE": 0,
+        "PRICE": "21995",
+        "FILTER": " GPU ",
+        "PROPERTIES": {
+            "PLACEMENT": {
+                "name": "Размещение в ЦОДе",
+                "code": "PLACEMENT",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "ЦОД \"Ixcellerate Moscow One\""
+                    },
+                    {
+                        "price": 0,
+                        "title": "ЦОД DataPro"
+                    }
+                ]
+            },
+            "PROCESSORS": {
+                "name": "Процессоры",
+                "code": "PROCESSORS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "2 x Xeon E5-2620v4 (10 x 2.1GHz)"
+                    },
+                    {
+                        "price": 400,
+                        "title": "2 x Xeon E5-2623v4 (4 x 2.6GHz)"
+                    },
+                    {
+                        "price": 800,
+                        "title": "2 x Xeon E5-2630v4 (10 x 2.2GHz)"
+                    },
+                    {
+                        "price": 1200,
+                        "title": "2 x Xeon E5-2640v4 (10 x 2.4GHz)"
+                    },
+                    {
+                        "price": 2000,
+                        "title": "2 x Xeon E5-2650v4 (12 x 2.2GHz)"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "2 x Xeon E5-2643v4 (6 x 3.4GHz)"
+                    },
+                    {
+                        "price": 3600,
+                        "title": "2 x Xeon E5-2667v4 (8 x 3.2GHz)"
+                    },
+                    {
+                        "price": 4800,
+                        "title": "2 x Xeon E5-2695v4 (18 x 2.1GHz)"
+                    },
+                    {
+                        "price": 11200,
+                        "title": "2 x Xeon E5-2698v4 (20 x 2.2GHz)"
+                    }
+                ]
+            },
+            "VIDEO_ADAPTERS": {
+                "name": "Видеоадаптеры",
+                "code": "VIDEO_ADAPTERS",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "GRID K2 Dual GPU HP NVIDIA PCIe"
+                    }
+                ]
+            },
+            "RAM": {
+                "name": "Память",
+                "code": "RAM",
+                "chetnoe": true,
+                "multiple": false,
+                "values": [
+                    {
+                        "value": 32,
+                        "price": 1000,
+                        "max": 4,
+                        "title": "ECC DDR4-2400 (1x32Gb), HPE"
+                    },
+                    {
+                        "value": 64,
+                        "price": 2000,
+                        "title": "ECC DDR4-2400 (1x64Gb), HPE"
+                    }
+                ]
+            },
+            "RAID_CONTROLLER": {
+                "name": "Рейд-контроллер",
+                "code": "RAID_CONTROLLER",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "HPE Smart Array P244br\/1GB FBWC 12Gb 2-ports Int SAS (749680-B21)"
+                    }
+                ]
+            },
+            "DISKS1": {
+                "name": "Диски 1",
+                "code": "DISKS1",
+                "chetnoe": false,
+                "multiple": true,
+                "values": [
+                    {
+                        "price": 0,
+                        "value": 480,
+                        "title": "480GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 1200,
+                        "value": 1800,
+                        "title": "1.8TB HDD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 1400,
+                        "value": 960,
+                        "title": "960GB SSD SATA 6G 2.5\" MICRON"
+                    },
+                    {
+                        "price": 2000,
+                        "value": 1920,
+                        "title": "1.92TB SSD SAS 6G 2.5\" HPE"
+                    },
+                    {
+                        "price": 4400,
+                        "value": 3840,
+                        "title": "3.84TB SSD SAS 12G 2.5\" HPE"
+                    },
+                    {
+                        "price": 8600,
+                        "value": 7680,
+                        "title": "7.68TB SSD SAS 12G 2.5\" HPE"
+                    }
+                ]
+            },
+            "NETWORK_PUBLIC": {
+                "name": "Порты публичной сети",
+                "code": "NETWORK_PUBLIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    }
+                ]
+            },
+            "NETWORK_LOCAL": {
+                "name": "Порты внутренней сети",
+                "code": "NETWORK_LOCAL",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "1 Гбит\/с порт"
+                    },
+                    {
+                        "price": 0,
+                        "title": "10 Гбит\/с порт, без резервирования."
+                    },
+                    {
+                        "price": 1500,
+                        "title": "10 Гбит\/с порт, с резервированием"
+                    }
+                ]
+            },
+            "TRAFFIC": {
+                "name": "Трафик",
+                "code": "TRAFFIC",
+                "chetnoe": false,
+                "multiple": false,
+                "values": [
+                    {
+                        "price": 0,
+                        "title": "95% времени средняя загрузка до 49 Мбит\/сек"
+                    },
+                    {
+                        "price": 2800,
+                        "title": "Выделенная полоса 50 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 5500,
+                        "title": "Выделенная полоса 100 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    },
+                    {
+                        "price": 10000,
+                        "title": "Выделенная полоса 200 Мбит\/сек (Порт10 Гбит\/сек)."
+                    },
+                    {
+                        "price": 23000,
+                        "title": "Выделенная полоса 500 Мбит\/сек (Порт 10 Гбит\/сек)"
+                    }
+                ]
+            }
+        }
+    }
+}'></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
