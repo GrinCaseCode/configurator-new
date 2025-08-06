@@ -303,12 +303,15 @@ function App() {
                       })()}
 
                       {property.values.length === 1 ? (
-                        <div className="single-option" title={property.values[0].title}>
+                        <div className="single-option"
+                        title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index0].price} руб.`}
+                        >
                           {property.values[0].title}
                         </div>
                       ) : (
                         <select
                           value={itemValue.index}
+                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
                           onChange={(e) => {
                             const updated = [...config[key]];
                             updated[i].index = +e.target.value;
@@ -411,6 +414,7 @@ function App() {
                   )}
                   <select
                     value={selectedIndex}
+                    title={`${property.values[selectedIndex].title} Цена: ${property.values[selectedIndex].price} руб.`}
                     onChange={(e) => {
                       const newIndex = parseInt(e.target.value, 10);
                       if (property.count) {
@@ -524,7 +528,7 @@ function App() {
               })}
 
               <div className="result-price">
-                Итоговая сумма: <strong>{calcFullPrice(item)} руб.</strong>
+                Арендная плата в месяц: <strong>{calcTotal(item)} руб.</strong>
               </div>
               <form>
                 <div className="item-form">
