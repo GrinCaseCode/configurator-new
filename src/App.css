@@ -108,6 +108,7 @@
   text-align: center;
   cursor: pointer;
   color: #fff;
+  user-select: none;
 }
 input[type=number] {
 	-webkit-appearance: none;

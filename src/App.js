@@ -69,6 +69,7 @@ function App() {
       for (const [key, prop] of Object.entries(options)) {
         if (key === 'RAM') {
           defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
+          defaultConfig[key].totalModules = 2;
         } else if (prop.multiple) {
           defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
         } else {
@@ -209,7 +210,7 @@ function App() {
               className="quantity__btn"
               onClick={() => {
                 const updated = { ...config };
-                updated.RAM.totalModules = Math.max(1, totalModules - 1);
+                updated.RAM.totalModules = Math.max(2, totalModules - 2);
                 updateConfig(index, updated);
               }}
             >
@@ -220,7 +221,7 @@ function App() {
               className="quantity__btn"
               onClick={() => {
                 const updated = { ...config };
-                updated.RAM.totalModules = totalModules + 1;
+                updated.RAM.totalModules = totalModules + 2;
                 updateConfig(index, updated);
               }}
             >
@@ -304,7 +305,7 @@ function App() {
 
                       {property.values.length === 1 ? (
                         <div className="single-option"
-                        title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index0].price} руб.`}
+                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index0].price} руб.`}
                         >
                           {property.values[0].title}
                         </div>
