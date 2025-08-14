@@ -46,7 +46,7 @@ function transformItemToConfigOptions(item) {
 }
 
 function App() {
-  const [configData, setConfigData] = useState([]);
+  const [configData, setConfigData] = useState({ nds: 0, items: [] });
   const [activeFilter, setActiveFilter] = useState(null);
 
   const countValidOptions = (property) => {
@@ -59,56 +59,72 @@ function App() {
     if (!jsonString) return;
 
     const parsedData = JSON.parse(jsonString);
-    const configs = [];
 
-    for (const item of Object.values(parsedData)) {
-      const options = transformItemToConfigOptions(item);
-      if (Object.keys(options).length === 0) continue;
+    const ndsValue = parsedData.nds || 0;
 
-      const defaultConfig = {};
-      for (const [key, prop] of Object.entries(options)) {
-        if (key === 'RAM') {
-          defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
-          defaultConfig[key].totalModules = 2;
-        } else if (prop.multiple) {
-          defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
-        } else {
-          defaultConfig[key] = 0;
+    const configs = Object.values(parsedData)
+      .filter(item => item && item.ID)
+      .map(item => {
+        const options = transformItemToConfigOptions(item);
+        if (Object.keys(options).length === 0) return null;
+
+        const defaultConfig = {};
+        for (const [key, prop] of Object.entries(options)) {
+          if (key === 'RAM') {
+            defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
+            defaultConfig[key].totalModules = 2;
+          } else if (prop.multiple) {
+            defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
+          } else {
+            defaultConfig[key] = 0;
+          }
         }
-      }
 
-      configs.push({
-        id: item.ID,
-        name: item.NAME,
-        image: item.PREVIEW_PICTURE,
-        basePrice: parseInt((item.PRICE || '').replace(/\s/g, '')) || 0,
-        options,
-        config: defaultConfig,
-        isModalOpen: false,
-        FILTER: item.FILTER,
-        term: '1m'
-      });
-    }
+        return {
+          id: item.ID,
+          name: item.NAME,
+          image: item.PREVIEW_PICTURE,
+          basePrice: parseInt((item.PRICE || '').replace(/\s/g, '')) || 0,
+          options,
+          config: defaultConfig,
+          isModalOpen: false,
+          FILTER: item.FILTER,
+          term: '1m'
+        };
+      })
+      .filter(Boolean);
 
-    setConfigData(configs);
+    setConfigData({
+      nds: ndsValue,
+      items: configs
+    });
   }, []);
 
   const updateConfig = (index, newConfig) => {
-    setConfigData(prev =>
-      prev.map((item, i) => (i === index ? { ...item, config: newConfig } : item))
-    );
+    setConfigData(prev => ({
+      ...prev,
+      items: prev.items.map((item, i) =>
+        i === index ? { ...item, config: newConfig } : item
+      )
+    }));
   };
 
   const updateTerm = (index, newTerm) => {
-    setConfigData(prev =>
-      prev.map((item, i) => (i === index ? { ...item, term: newTerm } : item))
-    );
+    setConfigData(prev => ({
+      ...prev,
+      items: prev.items.map((item, i) =>
+        i === index ? { ...item, term: newTerm } : item
+      )
+    }));
   };
 
   const setIsModalOpen = (index, open) => {
-    setConfigData(prev =>
-      prev.map((item, i) => (i === index ? { ...item, isModalOpen: open } : item))
-    );
+    setConfigData(prev => ({
+      ...prev,
+      items: prev.items.map((item, i) =>
+        i === index ? { ...item, isModalOpen: open } : item
+      )
+    }));
   };
 
   const distributeRamModules = (totalModules, values) => {
@@ -129,7 +145,7 @@ function App() {
     return distribution;
   };
 
-  const calcTotal = (item) => {
+  const calcTotal = (item, nds = 0) => {
     const { config, options, basePrice, term } = item;
     let total = basePrice;
 
@@ -162,12 +178,10 @@ function App() {
       total = Math.round(total * 0.85);
     }
 
-    return total;
-  };
-
-  const calcFullPrice = (item) => {
-    const monthly = calcTotal(item);
-    return item.term === '12m' ? monthly * 12 : monthly;
+    return {
+      base: total,
+      withNds: Math.round(total * (1 + nds / 100))
+    };
   };
 
   const renderRamBlock = (index, options, config) => {
@@ -185,7 +199,6 @@ function App() {
     })();
 
     const activeValue = ramProp.values[activeIndex];
-    const activeCount = distribution[activeIndex] || 0;
 
     const totalValue = ramProp.values.reduce(
       (sum, v, i) => sum + v.unitValue * distribution[i],
@@ -237,7 +250,7 @@ function App() {
 
 
   const renderConfigurator = (item) => {
-    const index = configData.findIndex(c => c.id === item.id);
+    const index = configData.items.findIndex(c => c.id === item.id);
     const { name, image, options, config, isModalOpen } = item;
 
     return (
@@ -440,7 +453,9 @@ function App() {
           })}
         </div>
 
-        <div className="result-price">Стоимость: <strong>{calcTotal(item)} руб.</strong></div>
+        <div className="result-price">
+          Стоимость с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} </strong> руб.
+        </div>
         <button className="btn-main" onClick={() => setIsModalOpen(index, true)}>Заказать</button>
 
         {isModalOpen && (
@@ -464,7 +479,6 @@ function App() {
               {Object.entries(options).map(([key, property]) => {
                 if (!property.values) return null;
 
-                // Особый случай для RAM
                 if (key === 'RAM') {
                   const ramConfig = config[key];
                   const totalModules = ramConfig.totalModules || 1;
@@ -529,7 +543,7 @@ function App() {
               })}
 
               <div className="result-price">
-                Арендная плата в месяц: <strong>{calcTotal(item)} руб.</strong>
+                Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} руб.</strong>
               </div>
               <form>
                 <div className="item-form">
@@ -595,7 +609,7 @@ function App() {
           </div>
         </div>
         <div className="row-main">
-          {configData
+          {configData.items
             .filter(item => {
               if (!activeFilter) return true;
               if (!item.FILTER) return false;
