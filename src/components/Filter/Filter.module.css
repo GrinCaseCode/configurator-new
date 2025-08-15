@@ -1,0 +1,38 @@
+.filter {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 750px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+.filter__btn {
+    width: 30%;
+    max-width: 170px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    background-color: #343644;
+    color: white;
+    padding: 15px 10px;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+.filter__btn.active {
+    background-color: #ffaa06;
+    color: black;
+}
+
+
+@media only screen and (max-width : 768px) {
+  .filter {
+    gap: 10px;
+  }
+  .filter__btn {
+    width: 43%;
+    padding: 10px 8px;
+    font-size: 15px;
+}
+} 

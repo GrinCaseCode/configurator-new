@@ -1,13 +1,12 @@
-
-.App {
-  min-height: 100vh;
-  background-color: #292b37;
-  color: #fff;
-}
 .configurator {
   padding: 40px 15px;
   margin: 0 auto;
   font: normal 16px Tahoma, Verdana, Segoe, sans-serif;
+  padding: 0 15px;
+  width: 33.3333%;
+  margin: 0;
+  margin-bottom: 30px;
+  box-sizing: border-box;
 }
 .configurator * {
   box-sizing: border-box;
@@ -47,7 +46,7 @@
   color: #8f919b;
   display: block;
 }
-.single-option,
+.singleOption,
 .configurator__item select {
   height: 30px;
   background: #292b37;
@@ -58,7 +57,7 @@
   cursor: pointer;
   width: 100%;
 }
-.single-option {
+.singleOption {
   padding: 5px;
   cursor: initial;
   white-space: nowrap;
@@ -108,6 +107,9 @@
   text-align: center;
   cursor: pointer;
   color: #fff;
+  background: transparent;
+  border: none;
+  outline: none;
   user-select: none;
 }
 input[type=number] {
@@ -162,22 +164,6 @@ input::-webkit-inner-spin-button {
   margin-right: 10px;
   font-weight: 700;
 }
-.result-price {
-  font: normal 19px Arial;
-  padding-top: 18px;
-  margin-top: auto;
-  width: 100%;
-  color: #8f919b;
-  text-align: center;
-}
-.result-price strong {
-    font-size: 32px;
-    margin-top: 10px;
-    color: #ffaa06;
-    font-weight: 700;
-    display: block;
-    text-align: center;
-}
 .btn-main {
   height: 43px;
   color: #fff;
@@ -202,146 +188,7 @@ input::-webkit-inner-spin-button {
 .configurator .btn-main {
   margin-top: 20px;
 }
-.modal__feature {
-  font-size: 13px;
-  margin-bottom: 14px;
-}
-.modal__feature span {
-    color: #8f919b;
-}
-.item-form {
-  margin-bottom: 20px;
-}
-.item-form input,
-.item-form textarea {
-  height: 44px;
-  padding: 0 15px;
-  font-size: 14px;
-  font-family: inherit;
-  width: 100%;
-  border: none;
-  outline: none;
-}
-.item-form textarea {
-  height: 100px;
-  padding-top: 15px;
-  resize: none;
-}
-.modal__title {
-  font-size: 25px;
-  margin-bottom: 20px;
-  font-weight: 500;
-  color: #000;
-}
-.modal__content {
-  padding: 30px;
-  width: 500px;
-  max-width: 100%;
-  border-radius: 5px;
-  margin: 0 auto;
-  color: #000;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  background-color: #f0f0f0;
-  position: relative;
-  z-index: 2;
-}
-.modal__content form {
-  padding-top: 30px;
-}
-.modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.modal__content .result-price {
-  font-size: 16px;
-  color: #000;
-  text-align: left;
-}
-.modal__content .result-price strong {
-  display: inline;
-  font-size: inherit;
-  margin: 0;
-}
-.modal__close {
-  top: 10px;
-  right: 15px;
-  font-size: 30px;
-  font-weight: 700;
-  position: absolute;
-  cursor: pointer;
-  opacity: 0.2;
-  color: #000;
-  transition: all 0.3s;
-}
-.modal__close:hover {
-  opacity: 0.5;
-}
-.modal {
-  padding: 25px 15px; 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: auto;
-  background: rgba(0, 0, 0, .5); 
-  z-index: 100;
-}
-.no-scroll {
-  overflow: hidden;
-}
-.row-main {
-  margin: 0 -15px;
-  margin-bottom: -30px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.row-main .configurator {
-  padding: 0 15px;
-  width: 33.3333%;
-  margin: 0;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-}
-.container {
-  max-width: 1000px;
-  padding: 50px 15px;
-  margin: 0 auto;
-} 
-.filter {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 750px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-}
-.filter__btn {
-    width: 30%;
-    max-width: 170px;
-    display: block;
-    text-align: center;
-    cursor: pointer;
-    background-color: #343644;
-    color: white;
-    padding: 15px 10px;
-    font-size: 20px;
-    transition: all 0.3s;
-}
-.filter__btn.active {
-    background-color: #ffaa06;
-    color: black;
-}
+
 .term {
   gap: 25px;
   margin-bottom: 15px;
@@ -358,6 +205,8 @@ input::-webkit-inner-spin-button {
   text-align: center;
   flex: 1;
   transition: all 0.3s;
+  padding: 0;
+  border: none;
 }
 .term__btn.active {
     background-color: #ffaa06;
@@ -370,30 +219,67 @@ input::-webkit-inner-spin-button {
   position: relative;
   color: red;
 }
-
-.tooltip-text {
-  position: absolute;
-  left: 0;
-  z-index: 10;
-  width: max-content;
-  max-width: 300px;
-  display: block;
-  background-color: #343644;
+.resultPrice {
+  font: normal 19px Arial;
+  padding-top: 18px;
+  margin-top: auto;
+  width: 100%;
+  color: #8f919b;
+  text-align: center;
+}
+.resultPrice strong {
+    font-size: 32px;
+    margin-top: 10px;
+    color: #ffaa06;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+}
+.btnMain {
+  height: 43px;
   color: #fff;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  white-space: normal;
-  word-break: break-word;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  background: #ffaa06;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btnMain:hover {
+    background: #e19503;
+}
+.configurator .btnMain {
+  margin-top: 20px;
 }
 
 
+.btnAddLine {
+  padding: 0 15px;
+  height: 30px;
+  border: 1px solid rgb(118, 118, 118);
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+}
+.btnAddLine strong {
+  font-size: 160%;
+  margin-right: 10px;
+  font-weight: 700;
+}
+
 @media only screen and (max-width : 992px) {
-  .row-main .configurator {
+  .configurator {
     width: 50%;
   }
 }
@@ -417,24 +303,10 @@ input::-webkit-inner-spin-button {
     font-size: 22px;
     margin-top: 0;
   }
-  .result-price{ 
+  .resultPrice{ 
     margin-top: 18px;
   }
-  .modal {
-    padding: 15px;
-  }
-  .modal__content {
-    padding: 25px 15px;
-  }
-  .row-main .configurator {
+  .configurator {
     width: 100%;
   }
-  .filter {
-    gap: 10px;
-  }
-  .filter__btn {
-    width: 43%;
-    padding: 10px 8px;
-    font-size: 15px;
-}
 } 
