@@ -277,7 +277,7 @@ export function Configurator({
       </div>
 
       <div className={styles.resultPrice}>
-        Стоимость с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} </strong> руб.
+        Стоимость с НДС {configData.nds}% <strong>{calcTotal(item, configData.nds).withNds} </strong> руб.
       </div>
       <button className={styles.btnMain} onClick={() => setIsModalOpen(index, true)}>Заказать</button>
 
