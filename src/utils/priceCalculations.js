@@ -90,11 +90,11 @@ export function calcTotal(item, nds = 0) {
   }
 
   if (term === '12m') {
-    total = Math.round(total * 0.85);
+    total = Math.ceil(total * 0.85);
   }
 
   return {
     base: total,
-    withNds: Math.round(total * (1 + nds / 100))
+    withNds: Math.ceil(total * (1 + nds / 100))
   };
 }
