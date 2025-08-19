@@ -95,6 +95,6 @@ export function calcTotal(item, nds = 0) {
 
   return {
     base: total,
-    withNds: Math.ceil(total * (1 + nds / 100))
+    withNds: Math.round(total * (1 + nds / 100))
   };
 }
