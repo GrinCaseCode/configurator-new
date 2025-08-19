@@ -90,7 +90,7 @@ export function calcTotal(item, nds = 0) {
   }
 
   if (term === '12m') {
-    total = Math.ceil(total * 0.85);
+    total = Math.round(total * 0.85);
   }
 
   return {
