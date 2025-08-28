@@ -47,7 +47,7 @@ export function Configurator({
     const totalModules = ramConfig.totalModules || 1;
     const distribution = distributeRamModules(totalModules, ramProp.values);
 
-    const maxModules = parseInt(ramProp.max) || 999; // 999 как fallbac
+    const maxModules = parseInt(ramProp.max) || 999; 
 
     const activeIndex = (() => {
       for (let i = distribution.length - 1; i >= 0; i--) {
