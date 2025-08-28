@@ -17,12 +17,37 @@ export function Configurator({
     return property.values.filter(v => v.title.toLowerCase() !== 'нет').length;
   };
 
+  const getAvailableOptions = (property, currentConfig, currentIndex) => {
+    const selectedIndices = currentConfig
+      .filter((_, idx) => idx !== currentIndex)
+      .map(item => item.index)
+      .filter(index => index !== -1);
+
+    return property.values.filter((opt, idx) =>
+      !selectedIndices.includes(idx) || opt.title.toLowerCase() === 'нет'
+    );
+  };
+
+
+  const getFirstAvailableIndex = (property, currentConfig) => {
+    const selectedIndices = currentConfig.map(item => item.index);
+
+    for (let i = 0; i < property.values.length; i++) {
+      if (!selectedIndices.includes(i) || property.values[i].title.toLowerCase() === 'нет') {
+        return i;
+      }
+    }
+    return 0;
+  };
+
   const renderRamBlock = () => {
     const ramProp = options.RAM;
     const ramConfig = config.RAM;
 
     const totalModules = ramConfig.totalModules || 1;
     const distribution = distributeRamModules(totalModules, ramProp.values);
+
+    const maxModules = parseInt(ramProp.max) || 999; // 999 как fallbac
 
     const activeIndex = (() => {
       for (let i = distribution.length - 1; i >= 0; i--) {
@@ -32,6 +57,7 @@ export function Configurator({
     })();
 
     const activeValue = ramProp.values[activeIndex];
+
 
     const totalValue = ramProp.values.reduce(
       (sum, v, i) => sum + v.unitValue * distribution[i],
@@ -43,14 +69,24 @@ export function Configurator({
         <p>{ramProp.name}</p>
         <div className={styles.configurator__line}>
           <div className={styles.configurator__sum}>{totalValue} GB</div>
-          {activeValue && (
-            <div
-              className={styles.singleOption}
-              title={`${activeValue.title} Цена: ${activeValue.price} руб.`}
-            >
-              {activeValue.title}
-            </div>
-          )}
+
+          <select
+            value={activeIndex}
+            title={`${activeValue.title} Цена: ${activeValue.price} руб.`}
+            onChange={() => { }}
+            className={styles.ramSelect}
+          >
+            {ramProp.values.map((opt, idx) => (
+              <option
+                key={idx}
+                value={idx}
+                hidden={idx !== activeIndex}
+              >
+                {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
+              </option>
+            ))}
+          </select>
+
           <div className={styles.quantity}>
             <div
               className={styles.quantity__btn}
@@ -64,11 +100,13 @@ export function Configurator({
             </div>
             <input type="number" value={totalModules} readOnly />
             <div
-              className={styles.quantity__btn}
+              className={`${styles.quantity__btn} ${totalModules >= maxModules ? styles.disabled : ''}`}
               onClick={() => {
-                const updated = { ...config };
-                updated.RAM.totalModules = totalModules + 2;
-                updateConfig(index, updated);
+                if (totalModules < maxModules) {
+                  const updated = { ...config };
+                  updated.RAM.totalModules = totalModules + 2;
+                  updateConfig(index, updated);
+                }
               }}
             >
               +
@@ -129,84 +167,88 @@ export function Configurator({
             return (
               <label className={styles.configurator__item} key={key}>
                 <p>{property.name}</p>
-                {config[key].map((itemValue, i) => (
-                  <div className={styles.configurator__line} key={i}>
-                    {(() => {
-                      const opt = property.values[itemValue.index];
-                      const unit = opt?.unitValue || 0;
-                      const qty = itemValue.quantity;
-                      const total = unit * qty;
-                      return total > 0 ? (
-                        <div className={styles.configurator__sum}>{total} GB</div>
-                      ) : null;
-                    })()}
+                {config[key].map((itemValue, i) => {
+                  const availableOptions = getAvailableOptions(property, config[key], i);
 
-                    {property.values.length === 1 ? (
-                      <div className={styles.singleOption}
-                        title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index0].price} руб.`}
-                      >
-                        {property.values[0].title}
-                      </div>
-                    ) : (
-                      <select
-                        value={itemValue.index}
-                        title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
-                        onChange={(e) => {
-                          const updated = [...config[key]];
-                          updated[i].index = +e.target.value;
-                          updateConfig(index, { ...config, [key]: updated });
-                        }}
-                      >
-                        {property.values.map((opt, idx) => (
-                          <option key={idx} value={idx}>
-                            {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
-                          </option>
-                        ))}
-                      </select>
-                    )}
+                  return (
+                    <div className={styles.configurator__line} key={i}>
+                      {(() => {
+                        const opt = property.values[itemValue.index];
+                        const unit = opt?.unitValue || 0;
+                        const qty = itemValue.quantity;
+                        const total = unit * qty;
+                        return total > 0 ? (
+                          <div className={styles.configurator__sum}>{total} GB</div>
+                        ) : null;
+                      })()}
 
-                    {property.max > 1 && property.values[itemValue.index]?.title?.toLowerCase() !== 'нет' && (
-                      <div className={styles.quantity}>
-                        <div
-                          className={styles.quantity__btn}
-                          onClick={() => {
+                      {property.values.length === 1 ? (
+                        <div className={styles.singleOption}
+                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
+                        >
+                          {property.values[0].title}
+                        </div>
+                      ) : (
+                        <select
+                          value={itemValue.index}
+                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
+                          onChange={(e) => {
                             const updated = [...config[key]];
-                            updated[i].quantity = Math.max(property.min, updated[i].quantity - 1);
+                            updated[i].index = +e.target.value;
                             updateConfig(index, { ...config, [key]: updated });
                           }}
                         >
-                          -
-                        </div>
-                        <input type="number" value={itemValue.quantity} readOnly />
-                        <div
-                          className={`${styles.quantity__btn} ${config[key].reduce((sum, it) => sum + it.quantity, 0) >= property.max ? styles.disabled : ''}`}
-                          onClick={() => {
-                            const totalQty = config[key].reduce((sum, it) => sum + it.quantity, 0);
-                            if (totalQty < property.max) {
+                          {availableOptions.map((opt, idx) => (
+                            <option key={idx} value={property.values.indexOf(opt)}>
+                              {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+
+                      {property.max > 1 && property.values[itemValue.index]?.title?.toLowerCase() !== 'нет' && (
+                        <div className={styles.quantity}>
+                          <div
+                            className={styles.quantity__btn}
+                            onClick={() => {
                               const updated = [...config[key]];
-                              updated[i].quantity += 1;
+                              updated[i].quantity = Math.max(property.min, updated[i].quantity - 1);
                               updateConfig(index, { ...config, [key]: updated });
-                            }
+                            }}
+                          >
+                            -
+                          </div>
+                          <input type="number" value={itemValue.quantity} readOnly />
+                          <div
+                            className={`${styles.quantity__btn} ${config[key].reduce((sum, it) => sum + it.quantity, 0) >= property.max ? styles.disabled : ''}`}
+                            onClick={() => {
+                              const totalQty = config[key].reduce((sum, it) => sum + it.quantity, 0);
+                              if (totalQty < property.max) {
+                                const updated = [...config[key]];
+                                updated[i].quantity += 1;
+                                updateConfig(index, { ...config, [key]: updated });
+                              }
+                            }}
+                          >
+                            +
+                          </div>
+                        </div>
+                      )}
+
+                      {i > 0 && (
+                        <div
+                          className={styles.btnRemoveLine}
+                          onClick={() => {
+                            const updated = config[key].filter((_, idx) => idx !== i);
+                            updateConfig(index, { ...config, [key]: updated });
                           }}
                         >
-                          +
+                          X
                         </div>
-                      </div>
-                    )}
-
-                    {i > 0 && (
-                      <div
-                        className={styles.btnRemoveLine}
-                        onClick={() => {
-                          const updated = config[key].filter((_, idx) => idx !== i);
-                          updateConfig(index, { ...config, [key]: updated });
-                        }}
-                      >
-                        X
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  );
+                })}
 
                 {property.max > 1 &&
                   config[key].length < countValidOptions(property) &&
@@ -216,13 +258,11 @@ export function Configurator({
                       onClick={() => {
                         const totalQty = config[key].reduce((sum, it) => sum + it.quantity, 0);
                         if (totalQty < property.max) {
-                          const firstValidIndex = property.values.findIndex(
-                            v => v.title.toLowerCase() !== 'нет'
-                          );
+                          const firstAvailableIndex = getFirstAvailableIndex(property, config[key]);
                           updateConfig(index, {
                             ...config,
                             [key]: [...config[key], {
-                              index: firstValidIndex !== -1 ? firstValidIndex : 0,
+                              index: firstAvailableIndex,
                               quantity: property.min
                             }]
                           });
@@ -277,7 +317,7 @@ export function Configurator({
       </div>
 
       <div className={styles.resultPrice}>
-        Стоимость с НДС {configData.nds}% <strong>{calcTotal(item, configData.nds).withNds} </strong> руб.
+        Стоимость с НДС {configData.nds}% <strong>{calcTotal(item, configData.nds).withNds} </strong> рублей
       </div>
       <button className={styles.btnMain} onClick={() => setIsModalOpen(index, true)}>Заказать</button>
 

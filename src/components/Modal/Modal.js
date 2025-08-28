@@ -4,6 +4,31 @@ import { calcTotal, distributeRamModules } from '../../utils/priceCalculations';
 export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
 
+
+  const checkDependence = (property, options, config) => {
+    if (!property.dependence) return true;
+
+    const depKey = property.dependence;
+    const depProp = options[depKey];
+    if (!depProp) return true;
+
+    const depConfig = config[depKey];
+    let hasNet = false;
+
+    if (depProp.multiple && Array.isArray(depConfig)) {
+      hasNet = depConfig.some(d => {
+        const val = depProp.values?.[d.index]?.title?.toLowerCase();
+        return val === 'нет';
+      });
+    } else {
+      const selectedIndex = depConfig?.selectedIndex ?? depConfig;
+      const val = depProp.values?.[selectedIndex]?.title?.toLowerCase();
+      hasNet = val === 'нет';
+    }
+
+    return !hasNet;
+  };
+
   return (
     <div className={styles.modal}>
       <div
@@ -24,6 +49,10 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
         {Object.entries(options).map(([key, property]) => {
           if (!property.values) return null;
+
+          if (!checkDependence(property, options, config)) {
+            return null;
+          }
 
           if (key === 'RAM') {
             const ramConfig = config[key];
@@ -59,21 +88,34 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
             if (selected.length === 0) return null;
 
+            let totalSize = 0;
+            const diskItems = selected.map((d, i) => {
+              const itemVal = property.values[d.index];
+              if (!itemVal || itemVal.title.toLowerCase() === 'нет')
+                return null;
+
+              const diskSize = itemVal.unitValue ? parseInt(itemVal.unitValue) : 0;
+              const itemTotalSize = diskSize * d.quantity;
+              totalSize += itemTotalSize;
+
+              return (
+                <div key={i}>
+                  {itemVal.title}
+                  {d.quantity > 1 ? ` × ${d.quantity} шт.` : ''}
+                  {/* {diskSize > 0 && ` = ${itemTotalSize} Gb`} */}
+                </div>
+              );
+            });
+
             return (
               <div className={styles.modal__feature} key={key}>
                 <span>{property.name}:</span>{' '}
-                {selected.map((d, i) => {
-                  const itemVal = property.values[d.index];
-                  if (!itemVal || itemVal.title.toLowerCase() === 'нет')
-                    return null;
-
-                  return (
-                    <div key={i}>
-                      {itemVal.title}
-                      {d.quantity > 1 ? ` × ${d.quantity} шт.` : ''}
-                    </div>
-                  );
-                })}
+                {diskItems}
+                {totalSize > 0 && (
+                  <div style={{ marginTop: '5px', fontWeight: 'bold' }}>
+                    Общий объем: {totalSize} Gb
+                  </div>
+                )}
               </div>
             );
           }
@@ -89,7 +131,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
         })}
 
         <div className={styles.resultPrice}>
-          Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} руб.</strong>
+          Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} рублей</strong>
         </div>
         <form>
           <div className={styles.itemForm}>
