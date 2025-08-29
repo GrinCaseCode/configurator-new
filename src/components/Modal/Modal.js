@@ -4,6 +4,22 @@ import { calcTotal } from '../../utils/priceCalculations';
 export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
 
+  const getDisplayUnit = (title) => {
+    if (title.toLowerCase().includes('tb') || title.toLowerCase().includes('тб')) {
+      return 'TB';
+    }
+    if (title.toLowerCase().includes('gb') || title.toLowerCase().includes('гб')) {
+      return 'GB';
+    }
+    return 'GB';
+  };
+
+  const formatStorageValue = (value, unit) => {
+    if (unit === 'TB') {
+      return (value / 1024).toFixed(1);
+    }
+    return value;
+  };
 
   const checkDependence = (property, options, config) => {
     if (!property.dependence) return true;
@@ -60,10 +76,12 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
             const activeValue = property.values[activeIndex];
             const totalModules = ramConfig.totalModules || 1;
             const totalValue = activeValue.unitValue * totalModules;
+            const displayUnit = getDisplayUnit(activeValue.title);
+            const formattedValue = formatStorageValue(totalValue, displayUnit);
 
             return (
               <div className={styles.modal__feature} key={key}>
-                <span>{property.name}:</span> {totalValue} GB ({activeValue.title} × {totalModules} шт.)
+                <span>{property.name}:</span> {formattedValue} {displayUnit} ({activeValue.title} × {totalModules} шт.)
               </div>
             );
           }
@@ -90,10 +108,13 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
                 <div key={i}>
                   {itemVal.title}
                   {d.quantity > 1 ? ` × ${d.quantity} шт.` : ''}
-                  {/* {diskSize > 0 && ` = ${itemTotalSize} Gb`} */}
                 </div>
               );
             });
+
+            const firstItem = selected[0] ? property.values[selected[0].index] : null;
+            const displayUnit = firstItem ? getDisplayUnit(firstItem.title) : 'GB';
+            const formattedTotalSize = formatStorageValue(totalSize, displayUnit);
 
             return (
               <div className={styles.modal__feature} key={key}>
@@ -101,7 +122,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
                 {diskItems}
                 {totalSize > 0 && (
                   <div style={{ marginTop: '5px', fontWeight: 'bold' }}>
-                    Общий объем: {totalSize} Gb
+                    Общий объем: {formattedTotalSize} {displayUnit}
                   </div>
                 )}
               </div>

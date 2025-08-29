@@ -7,13 +7,20 @@
   overflow: hidden;
 }
 .rowMain {
-  margin: 0 -15px;
-  margin-bottom: -30px;
+  margin: 0 -30px;
+  margin-bottom: -45px;
   display: flex;
   flex-wrap: wrap;
 }
 .container {
-  max-width: 1000px;
+  max-width: 1180px;
   padding: 50px 15px;
   margin: 0 auto;
 } 
+
+@media only screen and (max-width : 768px) {
+.rowMain {
+  margin: 0 -15px;
+  margin-bottom: -30px;
+}  
+}

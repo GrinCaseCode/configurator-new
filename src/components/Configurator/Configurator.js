@@ -12,6 +12,23 @@ export function Configurator({
   const { name, image, options, config, isModalOpen, term } = item;
   const index = configData.items.findIndex(c => c.id === item.id);
 
+  const getDisplayUnit = (title) => {
+    if (title.toLowerCase().includes('tb') || title.toLowerCase().includes('тб')) {
+      return 'TB';
+    }
+    if (title.toLowerCase().includes('gb') || title.toLowerCase().includes('гб')) {
+      return 'GB';
+    }
+    return 'GB';
+  };
+
+  const formatStorageValue = (value, unit) => {
+    if (unit === 'TB') {
+      return (value / 1024).toFixed(1);
+    }
+    return value;
+  };
+
   const countValidOptions = (property) => {
     return property.values.filter(v => v.title.toLowerCase() !== 'нет').length;
   };
@@ -56,7 +73,9 @@ export function Configurator({
       <label className={styles.configurator__item} key="RAM">
         <p>{ramProp.name}</p>
         <div className={styles.configurator__line}>
-          <div className={styles.configurator__sum}>{totalValue} GB</div>
+          <div className={styles.configurator__sum}>
+            {totalValue} {getDisplayUnit(activeValue.title)}
+          </div>
 
           <select
             value={activeIndex}
@@ -137,7 +156,9 @@ export function Configurator({
   return (
     <div className={styles.configurator} key={item.id}>
       <div className={styles.configurator__main}>
-        <img src={image} alt={name} />
+        <div className={styles.configurator__image}>
+          <img src={image} alt={name} />
+        </div>
         <h1 className={styles.configurator__title}>{name}</h1>
       </div>
 
@@ -159,7 +180,7 @@ export function Configurator({
       <div className={styles.configurator__content}>
         {Object.entries(options).map(([key, property]) => {
           if (key === 'RAM') return renderRamBlock();
- 
+
           if (property.dependence) {
             const depKey = property.dependence;
             const depProp = options[depKey];
@@ -194,8 +215,13 @@ export function Configurator({
                         const unit = opt?.unitValue || 0;
                         const qty = itemValue.quantity;
                         const total = unit * qty;
+                        const displayUnit = getDisplayUnit(opt.title);
+                        const formattedValue = formatStorageValue(total, displayUnit);
+
                         return total > 0 ? (
-                          <div className={styles.configurator__sum}>{total} GB</div>
+                          <div className={styles.configurator__sum}>
+                            {formattedValue} {displayUnit}
+                          </div>
                         ) : null;
                       })()}
 
@@ -266,7 +292,7 @@ export function Configurator({
                     </div>
                   );
                 })}
- 
+
                 {property.max > 1 &&
                   config[key].length < countValidOptions(property) &&
                   config[key].reduce((sum, it) => sum + it.quantity, 0) < property.max &&
@@ -308,7 +334,9 @@ export function Configurator({
               <p>{property.name}</p>
               <div className={styles.configurator__line}>
                 {unitValue > 0 && (
-                  <div className={styles.configurator__sum}>{totalValue} GB</div>
+                  <div className={styles.configurator__sum}>
+                    {formatStorageValue(totalValue, getDisplayUnit(selected.title))} {getDisplayUnit(selected.title)}
+                  </div>
                 )}
                 <select
                   value={selectedIndex}

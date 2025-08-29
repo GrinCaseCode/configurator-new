@@ -1,11 +1,10 @@
 .configurator {
-  padding: 40px 15px;
   margin: 0 auto;
   font: normal 16px Tahoma, Verdana, Segoe, sans-serif;
-  padding: 0 15px;
+  padding: 0 30px;
   width: 33.3333%;
   margin: 0;
-  margin-bottom: 30px;
+  margin-bottom: 45px;
   box-sizing: border-box;
 }
 .configurator * {
@@ -31,11 +30,16 @@
   width: 100%;
   flex: none;
 }
+.configurator__image {
+  height: 174px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .configurator__main img {
   max-width: 100%;
-  margin: 0 auto;
-  margin-bottom: 15px;
-  height: auto;
+  max-height: 100%;
   transition: all 0.3s;
 }
 .configurator__content {
@@ -43,6 +47,9 @@
 }
 .configurator__item {
   margin-bottom: 12px;
+  max-width: 73%;
+  margin-left: auto;
+  margin-right: auto;
   color: #8f919b;
   display: block;
 }
@@ -67,10 +74,11 @@
 .configurator__item p {
   margin: 0;
   margin-bottom: 8px;
+  text-align: center;
 }
 .configurator__line {
   margin-bottom: 8px;
-  gap: 15px;
+  gap: 10px;
   display: flex;
   align-items: center;
 }
@@ -135,63 +143,13 @@ input::-webkit-inner-spin-button {
   border: 1px solid rgb(118, 118, 118);
   line-height: 19px;
 }
-.btn-remove-line {
-  line-height: 19px;
-  padding: 0 10px;
-  height: 30px;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  border: 1px solid rgb(118, 118, 118);
-  cursor: pointer;
-}
-.btn-add-line {
-  padding: 0 15px;
-  height: 30px;
-  border: 1px solid rgb(118, 118, 118);
-  margin-top: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #fff;
-}
-.btn-add-line strong {
-  font-size: 160%;
-  margin-right: 10px;
-  font-weight: 700;
-}
-.btn-main {
-  height: 43px;
-  color: #fff;
-  background: #ffaa06;
-  text-transform: uppercase;
-  width: 100%;
-  padding: 0 10px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.btn-main:hover {
-    background: #e19503;
-}
-.configurator .btn-main {
-  margin-top: 20px;
-}
 
 .term {
   gap: 25px;
   margin-bottom: 15px;
+  width: 73%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
 }
@@ -257,7 +215,7 @@ input::-webkit-inner-spin-button {
     background: #e19503;
 }
 .configurator .btnMain {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 
