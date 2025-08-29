@@ -42,23 +42,6 @@ export function transformItemToConfigOptions(item) {
   return options;
 }
 
-export function distributeRamModules(totalModules, values) {
-  let remaining = totalModules;
-  const distribution = [];
-
-  for (const value of values) {
-    if (remaining <= 0) {
-      distribution.push(0);
-      continue;
-    }
-    const maxForType = value.max || remaining;
-    const count = Math.min(remaining, maxForType);
-    distribution.push(count);
-    remaining -= count;
-  }
-
-  return distribution;
-}
 
 export function calcTotal(item, nds = 0) {
   const { config, options, basePrice, term } = item;
@@ -67,16 +50,19 @@ export function calcTotal(item, nds = 0) {
   for (const [key, prop] of Object.entries(options)) {
     if (key === 'RAM') {
       const ramConfig = config[key];
-      const distribution = distributeRamModules(ramConfig.totalModules, prop.values);
+      const activeIndex = ramConfig.selectedIndex || 0;
+      const activeValue = prop.values[activeIndex];
+      const totalModules = ramConfig.totalModules || 1;
+
       let ramModules = [];
-      distribution.forEach((count, idx) => {
-        for (let i = 0; i < count; i++) {
-          ramModules.push(prop.values[idx].price);
-        }
-      });
+      for (let i = 0; i < totalModules; i++) {
+        ramModules.push(activeValue.price);
+      }
       ramModules.sort((a, b) => a - b);
       ramModules = ramModules.slice(2);
+
       total += ramModules.reduce((sum, price) => sum + price, 0);
+
     } else if (prop.multiple) {
       config[key].forEach(d => {
         total += (prop.values[d.index]?.price || 0) * d.quantity;

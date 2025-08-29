@@ -1,5 +1,5 @@
 import styles from './Modal.module.css';
-import { calcTotal, distributeRamModules } from '../../utils/priceCalculations';
+import { calcTotal } from '../../utils/priceCalculations';
 
 export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
@@ -56,26 +56,14 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
           if (key === 'RAM') {
             const ramConfig = config[key];
-            const totalModules = ramConfig.totalModules || 1;
-            const distribution = distributeRamModules(totalModules, property.values);
-
-            const activeIndex = (() => {
-              for (let i = distribution.length - 1; i >= 0; i--) {
-                if (distribution[i] > 0) return i;
-              }
-              return 0;
-            })();
-
+            const activeIndex = ramConfig.selectedIndex || 0;
             const activeValue = property.values[activeIndex];
-            const activeCount = distribution[activeIndex] || 0;
-            const totalValue = property.values.reduce(
-              (sum, v, i) => sum + v.unitValue * distribution[i],
-              0
-            );
+            const totalModules = ramConfig.totalModules || 1;
+            const totalValue = activeValue.unitValue * totalModules;
 
             return (
               <div className={styles.modal__feature} key={key}>
-                <span>{property.name}:</span> {totalValue} GB ({activeValue.title} × {activeCount} шт.)
+                <span>{property.name}:</span> {totalValue} GB ({activeValue.title} × {totalModules} шт.)
               </div>
             );
           }

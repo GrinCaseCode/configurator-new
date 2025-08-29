@@ -1,6 +1,5 @@
-
 import styles from './Configurator.module.css';
-import { distributeRamModules, calcTotal } from '../../utils/priceCalculations';
+import { calcTotal } from '../../utils/priceCalculations';
 import { Modal } from '../Modal/Modal';
 
 export function Configurator({
@@ -44,25 +43,14 @@ export function Configurator({
     const ramProp = options.RAM;
     const ramConfig = config.RAM;
 
-    const totalModules = ramConfig.totalModules || 1;
-    const distribution = distributeRamModules(totalModules, ramProp.values);
+    const maxModules = parseInt(ramProp.max) || 16;
+    const step = ramProp.chetnoe ? 2 : 1;
 
-    const maxModules = parseInt(ramProp.max) || 999; 
-
-    const activeIndex = (() => {
-      for (let i = distribution.length - 1; i >= 0; i--) {
-        if (distribution[i] > 0) return i;
-      }
-      return 0;
-    })();
-
+    const activeIndex = ramConfig.selectedIndex || 0;
     const activeValue = ramProp.values[activeIndex];
+    const totalModules = ramConfig.totalModules || step;
 
-
-    const totalValue = ramProp.values.reduce(
-      (sum, v, i) => sum + v.unitValue * distribution[i],
-      0
-    );
+    const totalValue = activeValue.unitValue * totalModules;
 
     return (
       <label className={styles.configurator__item} key="RAM">
@@ -73,15 +61,17 @@ export function Configurator({
           <select
             value={activeIndex}
             title={`${activeValue.title} Цена: ${activeValue.price} руб.`}
-            onChange={() => { }}
+            onChange={(e) => {
+              const newIndex = parseInt(e.target.value, 10);
+              const updated = { ...config };
+              updated.RAM.selectedIndex = newIndex;
+              updated.RAM.totalModules = step;
+              updateConfig(index, updated);
+            }}
             className={styles.ramSelect}
           >
             {ramProp.values.map((opt, idx) => (
-              <option
-                key={idx}
-                value={idx}
-                hidden={idx !== activeIndex}
-              >
+              <option key={idx} value={idx} hidden={idx !== activeIndex}>
                 {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
               </option>
             ))}
@@ -92,21 +82,47 @@ export function Configurator({
               className={styles.quantity__btn}
               onClick={() => {
                 const updated = { ...config };
-                updated.RAM.totalModules = Math.max(2, totalModules - 2);
+
+                if (totalModules > step) {
+                  if (activeIndex > 0 && totalModules === 10) {
+                    updated.RAM.selectedIndex = activeIndex - 1;
+                    updated.RAM.totalModules = maxModules;
+                  } else {
+                    updated.RAM.totalModules = totalModules - step;
+                  }
+                } else {
+                  if (activeIndex > 0) {
+                    updated.RAM.selectedIndex = activeIndex - 1;
+                    updated.RAM.totalModules = maxModules;
+                  }
+                }
+
                 updateConfig(index, updated);
               }}
             >
               -
             </div>
+
+
             <input type="number" value={totalModules} readOnly />
             <div
-              className={`${styles.quantity__btn} ${totalModules >= maxModules ? styles.disabled : ''}`}
+              className={`${styles.quantity__btn} ${totalModules >= maxModules && activeIndex === ramProp.values.length - 1
+                ? styles.disabled
+                : ''
+                }`}
               onClick={() => {
+                const updated = { ...config };
+
                 if (totalModules < maxModules) {
-                  const updated = { ...config };
-                  updated.RAM.totalModules = totalModules + 2;
-                  updateConfig(index, updated);
+                  updated.RAM.totalModules = totalModules + step;
+                } else {
+                  if (activeIndex < ramProp.values.length - 1) {
+                    updated.RAM.selectedIndex = activeIndex + 1;
+                    updated.RAM.totalModules = 10;
+                  }
                 }
+
+                updateConfig(index, updated);
               }}
             >
               +
@@ -116,6 +132,7 @@ export function Configurator({
       </label>
     );
   };
+
 
   return (
     <div className={styles.configurator} key={item.id}>
@@ -142,7 +159,7 @@ export function Configurator({
       <div className={styles.configurator__content}>
         {Object.entries(options).map(([key, property]) => {
           if (key === 'RAM') return renderRamBlock();
-
+ 
           if (property.dependence) {
             const depKey = property.dependence;
             const depProp = options[depKey];
@@ -249,10 +266,14 @@ export function Configurator({
                     </div>
                   );
                 })}
-
+ 
                 {property.max > 1 &&
                   config[key].length < countValidOptions(property) &&
-                  config[key].reduce((sum, it) => sum + it.quantity, 0) < property.max && (
+                  config[key].reduce((sum, it) => sum + it.quantity, 0) < property.max &&
+                  !config[key].some(item => {
+                    const opt = property.values[item.index];
+                    return opt && opt.title.toLowerCase() === 'нет';
+                  }) && (
                     <div
                       className={styles.btnAddLine}
                       onClick={() => {
@@ -317,7 +338,7 @@ export function Configurator({
       </div>
 
       <div className={styles.resultPrice}>
-        Стоимость с НДС {configData.nds}% <strong>{calcTotal(item, configData.nds).withNds} </strong> рублей
+        Стоимость с НДС {configData.nds}% <strong>{calcTotal(item, configData.nds).withNds} </strong> рублей в месяц
       </div>
       <button className={styles.btnMain} onClick={() => setIsModalOpen(index, true)}>Заказать</button>
 
