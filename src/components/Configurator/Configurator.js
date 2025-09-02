@@ -75,21 +75,19 @@ export function Configurator({
     const totalModules = ramConfig.totalModules || minModules;
     const totalValue = activeValue.unitValue * totalModules;
 
-const calculateNextTypeInitialValue = () => {
-  if (activeIndex < ramProp.values.length - 1) {
-    const currentTotalGB = totalValue;
-    const nextType = ramProp.values[activeIndex + 1];
-    const nextTypeGB = nextType.unitValue;
-    
-    // Базовое количество модулей для сохранения объема
-    const baseModules = Math.ceil(currentTotalGB / nextTypeGB);
-    
-    // Добавляем шаг, но НЕ ПРЕВЫШАЕМ МАКСИМУМ
-    const calculatedValue = baseModules + step;
-    return Math.min(calculatedValue, maxModules);
-  }
-  return minModules;
-};
+    const calculateNextTypeInitialValue = () => {
+      if (activeIndex < ramProp.values.length - 1) {
+        const currentTotalGB = totalValue;
+        const nextType = ramProp.values[activeIndex + 1];
+        const nextTypeGB = nextType.unitValue;
+
+        const baseModules = Math.ceil(currentTotalGB / nextTypeGB);
+
+        const calculatedValue = baseModules + step;
+        return Math.min(calculatedValue, maxModules);
+      }
+      return minModules;
+    };
 
     const calculatedInitialValue = calculateNextTypeInitialValue();
 
@@ -127,7 +125,7 @@ const calculateNextTypeInitialValue = () => {
                 const updated = { ...config };
 
                 if (totalModules > minModules) {
-                  if (activeIndex > 0 && totalModules === calculatedInitialValue) {
+                  if (activeIndex > 0 && totalModules === (ramConfig.switchValue || calculatedInitialValue)) {
                     updated.RAM.selectedIndex = activeIndex - 1;
                     updated.RAM.totalModules = maxModules;
                   } else {
@@ -149,12 +147,11 @@ const calculateNextTypeInitialValue = () => {
             <input type="number" value={totalModules} readOnly />
 
             <div
-  className={`${styles.quantity__btn} ${
-    (totalModules >= maxModules && activeIndex === ramProp.values.length - 1) ||
-    (activeIndex < ramProp.values.length - 1 && calculatedInitialValue >= maxModules)
-      ? styles.disabled
-      : ''
-  }`}
+              className={`${styles.quantity__btn} ${(totalModules >= maxModules && activeIndex === ramProp.values.length - 1) ||
+                  (activeIndex < ramProp.values.length - 1 && calculatedInitialValue >= maxModules)
+                  ? styles.disabled
+                  : ''
+                }`}
               onClick={() => {
                 const updated = { ...config };
 
@@ -164,6 +161,7 @@ const calculateNextTypeInitialValue = () => {
                   if (activeIndex < ramProp.values.length - 1) {
                     updated.RAM.selectedIndex = activeIndex + 1;
                     updated.RAM.totalModules = calculatedInitialValue;
+                    updated.RAM.switchValue = calculatedInitialValue;
                   }
                 }
 
@@ -271,8 +269,8 @@ const calculateNextTypeInitialValue = () => {
                             <option key={idx} value={property.values.indexOf(opt)}>
                               {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
                             </option>
-                          ))} 
-                        </select> 
+                          ))}
+                        </select>
                       )}
 
                       {property.max > 1 && property.values[itemValue.index]?.title?.toLowerCase() !== 'нет' && (
