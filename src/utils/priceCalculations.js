@@ -28,6 +28,7 @@ export function transformItemToConfigOptions(item) {
       ...prop,
       min: prop.min || 1,
       max: prop.max || 999,
+      stepOverride: prop.stepOverride || null, 
       dependence: prop.dependence || null,
       values: values.map((v, i) => ({
         title: v.title,
