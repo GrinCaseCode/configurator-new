@@ -81,7 +81,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
             return (
               <div className={styles.modal__feature} key={key}>
-                <span>{property.name}:</span> {formattedValue} {displayUnit} ({activeValue.title} × {totalModules} шт.)
+                <span>{property.name}:</span> {formattedValue}GB <br />  {totalModules} × {displayUnit} {activeValue.title}
               </div>
             );
           }
@@ -106,25 +106,31 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
               return (
                 <div key={i}>
+                  {d.quantity > 1 ? `${d.quantity} × ` : ''}
                   {itemVal.title}
-                  {d.quantity > 1 ? ` × ${d.quantity} шт.` : ''}
+
                 </div>
               );
             });
 
-            const firstItem = selected[0] ? property.values[selected[0].index] : null;
-            const displayUnit = firstItem ? getDisplayUnit(firstItem.title) : 'GB';
-            const formattedTotalSize = formatStorageValue(totalSize, displayUnit);
+            let displayUnit = 'GB';
+            let formattedTotalSize = totalSize;
+
+            if (totalSize >= 1024) {
+              displayUnit = 'TB';
+              formattedTotalSize = (totalSize / 1024).toFixed(1);
+            }
 
             return (
               <div className={styles.modal__feature} key={key}>
                 <span>{property.name}:</span>{' '}
-                {diskItems}
                 {totalSize > 0 && (
-                  <div style={{ marginTop: '5px', fontWeight: 'bold' }}>
-                    Общий объем: {formattedTotalSize} {displayUnit}
+                  <div style={{ display: 'inline' }}>
+                    {formattedTotalSize} {displayUnit}
                   </div>
                 )}
+
+                {diskItems}
               </div>
             );
           }
@@ -140,7 +146,12 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
         })}
 
         <div className={styles.resultPrice}>
-          Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds} рублей</strong>
+          Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} рублей</strong>
+        </div>
+        <div className={styles.resultPrice}>
+          Оплата за 12 мес. с НДС {configData.nds}%: <strong>
+            {(calcTotal({ ...item, term: '12m' }, configData.nds).withNds * 12).toLocaleString('ru')} рублей
+          </strong>
         </div>
         <form>
           <div className={styles.itemForm}>

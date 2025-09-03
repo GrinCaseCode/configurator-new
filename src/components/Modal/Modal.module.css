@@ -41,6 +41,8 @@
   background-color: #f0f0f0;
   position: relative;
   z-index: 2;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .modal__content form {
   padding-top: 30px;
