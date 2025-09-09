@@ -148,15 +148,14 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
         <div className={styles.resultPrice}>
           Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
         </div>
-        <div className={styles.resultPrice}>
-          Оплата за 12 мес. {item.term === '12m' && "(-15%)" } с НДС {configData.nds}%: <strong>
-            {(
-              item.term === '12m'
-                ? calcTotal(item, configData.nds).withNds * 12
-                : calcTotal({ ...item, term: '1m' }, configData.nds).withNds * 12
-            ).toLocaleString('ru')} ₽
-          </strong>
-        </div>
+        {item.term === '12m' &&
+          <div className={styles.resultPrice}>
+            Оплата за 12 мес. (-15%) с НДС {configData.nds}%: <strong>
+              {(calcTotal(item, configData.nds).withNds * 12).toLocaleString('ru')} ₽
+            </strong>
+          </div>
+        }
+        
         <form>
           <div className={styles.itemForm}>
             <input type="text" required placeholder="Имя" />
