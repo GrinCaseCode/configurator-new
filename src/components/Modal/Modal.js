@@ -154,7 +154,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
               {(calcTotal(item, configData.nds).withNds * 12).toLocaleString('ru')} ₽
             </strong>
           </div>
-        }
+        } 
         
         <form>
           <div className={styles.itemForm}>
@@ -171,7 +171,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
           </div>
           <button className={styles.btnMain}>Заказать</button>
         </form>
-      </div>
+      </div> 
     </div>
   );
 }
