@@ -156,7 +156,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
           </div>
         } 
         
-        <form>
+        <form> 
           <div className={styles.itemForm}>
             <input type="text" required placeholder="Имя" />
           </div>
