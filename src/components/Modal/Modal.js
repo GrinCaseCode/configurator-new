@@ -1,8 +1,11 @@
 import styles from './Modal.module.css';
 import { calcTotal } from '../../utils/priceCalculations';
+import { useState } from 'react';
 
 export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const getDisplayUnit = (title) => {
     if (title.toLowerCase().includes('tb') || title.toLowerCase().includes('тб')) {
@@ -44,6 +47,80 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
     return !hasNet;
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.target);
+    const formObject = Object.fromEntries(formData.entries());
+
+    const orderData = {
+      form: formObject,
+
+      configuration: {
+        product: {
+          id: item.id,
+          name: item.name,
+          basePrice: item.basePrice,
+          term: item.term
+        },
+        selectedOptions: {},
+        total: calcTotal(item, configData.nds)
+      },
+
+      selectedOptions: {}
+    };
+
+    Object.entries(options).forEach(([key, property]) => {
+      if (key === 'RAM') {
+        const ramConfig = config[key];
+        orderData.configuration.selectedOptions[key] = {
+          name: property.name,
+          value: `${ramConfig.totalModules} × ${property.values[ramConfig.selectedIndex]?.title}`,
+          price: property.values[ramConfig.selectedIndex]?.price * ramConfig.totalModules
+        };
+      } else if (Array.isArray(config[key])) {
+        orderData.configuration.selectedOptions[key] = config[key].map(item => ({
+          name: property.name,
+          value: property.values[item.index]?.title,
+          quantity: item.quantity,
+          price: property.values[item.index]?.price * item.quantity
+        }));
+      } else {
+        const selectedIndex = config[key]?.selectedIndex ?? config[key];
+        orderData.configuration.selectedOptions[key] = {
+          name: property.name,
+          value: property.values[selectedIndex]?.title,
+          price: property.values[selectedIndex]?.price
+        };
+      }
+    });
+
+    try {
+      const response = await fetch('/local/templates/wellserver/ajax/order_submit.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setTimeout(() => setIsModalOpen(false), 2000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Ошибка отправки:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.modal}>
@@ -59,6 +136,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
           ×
         </div>
         <div className={styles.modal__title}>Форма заказа</div>
+
         <div className={styles.modal__feature}>
           <strong>{name}</strong>
         </div>
@@ -154,24 +232,41 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
               {(calcTotal(item, configData.nds).withNds * 12).toLocaleString('ru')} ₽
             </strong>
           </div>
-        } 
-        
-        <form> 
+        }
+
+        {submitStatus === 'success' && (
+          <div className={styles.successMessage}>
+            Заявка отправлена успешно!
+          </div>
+        )}
+        {submitStatus === 'error' && (
+          <div className={styles.errorMessage}>
+            Ошибка отправки. Попробуйте еще раз.
+          </div>
+        )}
+        <form onSubmit={handleSubmit}>
           <div className={styles.itemForm}>
-            <input type="text" required placeholder="Имя" />
+            <input type="text" name="name" required placeholder="Имя" />
           </div>
           <div className={styles.itemForm}>
-            <input type="email" required placeholder="E-mail" />
+            <input type="email" name="email" required placeholder="E-mail" />
           </div>
           <div className={styles.itemForm}>
-            <input type="tel" required placeholder="Телефон" />
+            <input type="tel" name="phone" required placeholder="Телефон" />
           </div>
           <div className={styles.itemForm}>
-            <textarea placeholder="Комментарий"></textarea>
+            <textarea name="comment" placeholder="Комментарий"></textarea>
           </div>
-          <button className={styles.btnMain}>Заказать</button>
+          <button
+            type="submit"
+            className={styles.btnMain}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Отправка...' : 'Заказать'}
+          </button>
         </form>
-      </div> 
+
+      </div>
     </div>
   );
 }
