@@ -2,10 +2,65 @@ import styles from './Modal.module.css';
 import { calcTotal } from '../../utils/priceCalculations';
 import { useState } from 'react';
 
+
+const validatePhone = (phone) => {
+  // Правильная длина: +7-XXX-XXX-XX-XX = 16 символов
+  const phoneRegex = /^\+7-\d{3}-\d{3}-\d{2}-\d{2}$/;
+  return phoneRegex.test(phone) && phone.length === 16;
+};
+
 export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [phone, setPhone] = useState('+7-');
+
+    // Функция для форматирования телефона
+  const formatPhone = (value) => {
+    let numbers = value.replace(/\D/g, '');
+    
+    if (numbers.startsWith('7')) {
+      numbers = numbers.substring(1);
+    }
+    
+    if (numbers.length > 0) {
+      let formatted = '+7';
+      
+      if (numbers.length > 0) {
+        formatted += '-' + numbers.substring(0, 3);
+      }
+      if (numbers.length > 3) {
+        formatted += '-' + numbers.substring(3, 6);
+      }
+      if (numbers.length > 6) {
+        formatted += '-' + numbers.substring(6, 8);
+      }
+      if (numbers.length > 8) {
+        formatted += '-' + numbers.substring(8, 10);
+      }
+      
+      return formatted;
+    }
+    
+    return '+7-';
+  };
+
+  // Обработчик изменения телефона
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    const formatted = formatPhone(value);
+    setPhone(formatted);
+    
+    // Валидация в реальном времени
+    if (formatted.length === 16) { // Изменили с 17 на 16
+  if (!validatePhone(formatted)) {
+    setErrors(prev => ({...prev, phone: 'Неверный формат телефона'}));
+  } else {
+    setErrors(prev => ({...prev, phone: null}));
+  }
+}
+  };
 
   const getDisplayUnit = (title) => {
     if (title.toLowerCase().includes('tb') || title.toLowerCase().includes('тб')) {
@@ -49,14 +104,42 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
 
-    const formData = new FormData(e.target);
-    const formObject = Object.fromEntries(formData.entries());
+
+  const formData = new FormData(e.target);
+  const formObject = Object.fromEntries(formData.entries());
+  
+  const newErrors = {};
+  
+  if (!formObject.name) {
+    newErrors.name = 'Введите имя';
+  }
+  
+  if (!formObject.email) {
+    newErrors.email = 'Введите email';
+  } else if (!/\S+@\S+\.\S+/.test(formObject.email)) {
+    newErrors.email = 'Неверный формат email';
+  }
+  
+if (!phone || phone.length < 16) { // Изменили с 17 на 16
+  newErrors.phone = 'Введите полный номер телефона';
+} else if (!validatePhone(phone)) {
+  newErrors.phone = 'Неверный формат телефона';
+}
+  
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+  
+  setIsSubmitting(true);
+  setSubmitStatus(null);
 
     const orderData = {
-      form: formObject,
+      form: {
+      ...formObject,
+      phone: phone // Используем отформатированный телефон
+    },
 
       configuration: {
         product: {
@@ -245,26 +328,52 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <div className={styles.itemForm}>
-            <input type="text" name="name" required placeholder="Имя" />
-          </div>
-          <div className={styles.itemForm}>
-            <input type="email" name="email" required placeholder="E-mail" />
-          </div>
-          <div className={styles.itemForm}>
-            <input type="tel" name="phone" required placeholder="Телефон" />
-          </div>
-          <div className={styles.itemForm}>
-            <textarea name="comment" placeholder="Комментарий"></textarea>
-          </div>
-          <button
-            type="submit"
-            className={styles.btnMain}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Отправка...' : 'Заказать'}
-          </button>
-        </form>
+  <div className={styles.itemForm}>
+    <input 
+      type="text" 
+      name="name" 
+      required 
+      placeholder="Имя" 
+      onChange={() => setErrors(prev => ({...prev, name: null}))}
+    />
+    {errors.name && <span className={styles.errorText}>{errors.name}</span>}
+  </div>
+  
+  <div className={styles.itemForm}>
+    <input 
+      type="email" 
+      name="email" 
+      required 
+      placeholder="E-mail"
+      onChange={() => setErrors(prev => ({...prev, email: null}))}
+    />
+    {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+  </div>
+  
+  <div className={styles.itemForm}>
+    <input 
+      type="tel"
+      name="phone"
+      value={phone}
+      onChange={handlePhoneChange}
+      placeholder="+7-XXX-XXX-XX-XX"
+      required
+    />
+    {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
+  </div>
+  
+  <div className={styles.itemForm}>
+    <textarea name="comment" placeholder="Комментарий"></textarea>
+  </div>
+  
+  <button 
+    type="submit" 
+    className={styles.btnMain}
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? 'Отправка...' : 'Заказать'}
+  </button>
+</form>
 
       </div>
     </div>

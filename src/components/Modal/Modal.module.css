@@ -150,6 +150,19 @@
   margin-top: 15px;
   border: 1px solid #f5c6cb;
 }
+
+.errorText {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+.itemForm input:invalid,
+.itemForm input.error {
+  border-color: #dc3545;
+}
+
 @media only screen and (max-width : 768px) {
   .resultPrice{ 
     margin-top: 18px;
