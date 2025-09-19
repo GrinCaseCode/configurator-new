@@ -118,7 +118,7 @@ export function Configurator({
           </select>
 
           <div className={styles.quantity}>
-            <div
+            <button
               className={styles.quantity__btn}
               onClick={() => {
                 const updated = { ...config };
@@ -139,15 +139,13 @@ export function Configurator({
 
                 updateConfig(index, updated);
               }}
-                onMouseDown={(e) => e.preventDefault()}
-                onTouchStart={(e) => e.preventDefault()}
             >
               -
-            </div>
+            </button>
 
             <input type="number" value={totalModules} readOnly />
 
-            <div
+            <button
               className={`${styles.quantity__btn} ${(totalModules >= maxModules && activeIndex === ramProp.values.length - 1) ||
                   (activeIndex < ramProp.values.length - 1 && calculatedInitialValue >= maxModules)
                   ? styles.disabled
@@ -168,11 +166,9 @@ export function Configurator({
 
                 updateConfig(index, updated);
               }}
-                onMouseDown={(e) => e.preventDefault()}
-                onTouchStart={(e) => e.preventDefault()}
             >
               +
-            </div>
+            </button>
           </div>
         </div>
       </label>
@@ -276,20 +272,18 @@ export function Configurator({
 
                       {property.max > 1 && property.values[itemValue.index]?.title?.toLowerCase() !== 'нет' && (
                         <div className={styles.quantity}>
-                          <div
+                          <button
                             className={styles.quantity__btn}
                             onClick={() => {
                               const updated = [...config[key]];
                               updated[i].quantity = Math.max(property.min, updated[i].quantity - 1);
                               updateConfig(index, { ...config, [key]: updated });
                             }}
-                            onMouseDown={(e) => e.preventDefault()}
-                            onTouchStart={(e) => e.preventDefault()}
                           >
                             -
-                          </div>
+                          </button>
                           <input type="number" value={itemValue.quantity} readOnly />
-                          <div
+                          <button
                             className={`${styles.quantity__btn} ${config[key].reduce((sum, it) => sum + it.quantity, 0) >= property.max ? styles.disabled : ''}`}
                             onClick={() => {
                               const totalQty = config[key].reduce((sum, it) => sum + it.quantity, 0);
@@ -299,11 +293,9 @@ export function Configurator({
                                 updateConfig(index, { ...config, [key]: updated });
                               }
                             }}
-                            onMouseDown={(e) => e.preventDefault()}
-                            onTouchStart={(e) => e.preventDefault()}
                           >
                             +
-                          </div>
+                          </button>
                         </div>
                       )}
 
