@@ -139,6 +139,8 @@ export function Configurator({
 
                 updateConfig(index, updated);
               }}
+                onMouseDown={(e) => e.preventDefault()}
+                onTouchStart={(e) => e.preventDefault()}
             >
               -
             </div>
@@ -166,6 +168,8 @@ export function Configurator({
 
                 updateConfig(index, updated);
               }}
+                onMouseDown={(e) => e.preventDefault()}
+                onTouchStart={(e) => e.preventDefault()}
             >
               +
             </div>
@@ -279,6 +283,8 @@ export function Configurator({
                               updated[i].quantity = Math.max(property.min, updated[i].quantity - 1);
                               updateConfig(index, { ...config, [key]: updated });
                             }}
+                            onMouseDown={(e) => e.preventDefault()}
+                            onTouchStart={(e) => e.preventDefault()}
                           >
                             -
                           </div>
@@ -293,6 +299,8 @@ export function Configurator({
                                 updateConfig(index, { ...config, [key]: updated });
                               }
                             }}
+                            onMouseDown={(e) => e.preventDefault()}
+                            onTouchStart={(e) => e.preventDefault()}
                           >
                             +
                           </div>
