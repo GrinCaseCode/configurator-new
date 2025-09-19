@@ -101,7 +101,6 @@ export function Configurator({
 
           <select
             value={activeIndex}
-            title={`${activeValue.title} Цена: ${activeValue.price} руб.`}
             onChange={(e) => {
               const newIndex = parseInt(e.target.value, 10);
               const updated = { ...config };
@@ -251,14 +250,12 @@ export function Configurator({
 
                       {property.values.length === 1 ? (
                         <div className={styles.singleOption}
-                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
                         >
                           {property.values[0].title}
                         </div>
                       ) : (
                         <select
                           value={itemValue.index}
-                          title={`${property.values[itemValue.index].title} Цена: ${property.values[itemValue.index].price} руб.`}
                           onChange={(e) => {
                             const updated = [...config[key]];
                             updated[i].index = +e.target.value;
@@ -364,7 +361,6 @@ export function Configurator({
                 )}
                 <select
                   value={selectedIndex}
-                  title={`${property.values[selectedIndex].title} Цена: ${property.values[selectedIndex].price} руб.`}
                   onChange={(e) => {
                     const newIndex = parseInt(e.target.value, 10);
                     if (property.count) {
