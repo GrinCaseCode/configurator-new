@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 
 const validatePhone = (phone) => {
-  // Правильная длина: +7-XXX-XXX-XX-XX = 16 символов
   const phoneRegex = /^\+7-\d{3}-\d{3}-\d{2}-\d{2}$/;
   return phoneRegex.test(phone) && phone.length === 16;
 };
@@ -16,7 +15,6 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const [errors, setErrors] = useState({});
   const [phone, setPhone] = useState('+7-');
 
-    // Функция для форматирования телефона
   const formatPhone = (value) => {
     let numbers = value.replace(/\D/g, '');
     
@@ -46,14 +44,12 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
     return '+7-';
   };
 
-  // Обработчик изменения телефона
   const handlePhoneChange = (e) => {
     const value = e.target.value;
     const formatted = formatPhone(value);
     setPhone(formatted);
     
-    // Валидация в реальном времени
-    if (formatted.length === 16) { // Изменили с 17 на 16
+    if (formatted.length === 16) {
   if (!validatePhone(formatted)) {
     setErrors(prev => ({...prev, phone: 'Неверный формат телефона'}));
   } else {
@@ -121,7 +117,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
     newErrors.email = 'Неверный формат email';
   }
   
-if (!phone || phone.length < 16) { // Изменили с 17 на 16
+if (!phone || phone.length < 16) {
   newErrors.phone = 'Введите полный номер телефона';
 } else if (!validatePhone(phone)) {
   newErrors.phone = 'Неверный формат телефона';
@@ -138,7 +134,7 @@ if (!phone || phone.length < 16) { // Изменили с 17 на 16
     const orderData = {
       form: {
       ...formObject,
-      phone: phone // Используем отформатированный телефон
+      phone: phone
     },
 
       configuration: {
@@ -339,7 +335,7 @@ if (!phone || phone.length < 16) { // Изменили с 17 на 16
     {errors.name && <span className={styles.errorText}>{errors.name}</span>}
   </div>
   
-  <div className={styles.itemForm}>
+  <div className={styles.itemForm}> 
     <input 
       type="email" 
       name="email" 
