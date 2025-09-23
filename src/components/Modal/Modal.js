@@ -113,7 +113,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
   
   if (!formObject.email) {
     newErrors.email = 'Введите email';
-  } else if (!/\S+@\S+\.\S+/.test(formObject.email)) {
+ } else if (!/^[\w.-]+@[\w.-]+\.(ru|com)$/.test(formObject.email)) {
     newErrors.email = 'Неверный формат email';
   }
   
@@ -339,7 +339,7 @@ if (!phone || phone.length < 16) {
     <input 
       type="email" 
       name="email" 
-      required 
+      required  
       placeholder="E-mail"
       onChange={() => setErrors(prev => ({...prev, email: null}))}
     />
