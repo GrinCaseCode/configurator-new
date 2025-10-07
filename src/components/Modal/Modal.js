@@ -381,6 +381,12 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
           >
             {isSubmitting ? 'Отправка...' : 'Заказать'}
           </button>
+          <div className={styles.checkbox}>
+              <label>
+                <input type="checkbox" required/>
+                <span>Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a></span>
+              </label>
+            </div>
         </form>
 
       </div>
