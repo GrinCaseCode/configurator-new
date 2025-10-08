@@ -3,19 +3,26 @@ import { calcTotal } from '../../utils/priceCalculations';
 import validator from 'validator';
 import { useState } from 'react';
 
-
 const validatePhone = (phone) => {
   const phoneRegex = /^\+7-\d{3}-\d{3}-\d{2}-\d{2}$/;
   return phoneRegex.test(phone) && phone.length === 16;
 };
 
-export function Modal({ item, configData, setIsModalOpen, options, config }) {
+export function Modal({ item, configData, setIsModalOpen, options, config, form = {} }) {
   const { name } = item;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
-  const [phone, setPhone] = useState('+7-');
+  const [phone, setPhone] = useState('');
 
+  const formTexts = { 
+    title: form.title || 'Форма заказа',
+    price: form.price || 'Арендная плата в месяц с НДС',
+    year_price: form.year_price || 'Оплата за 12 мес. (-15%) с НДС',
+    button: form.button || 'Заказать',
+    concent: form.concent || 'Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a>'
+  };
+ 
   const formatPhone = (value) => {
     let numbers = value.replace(/\D/g, '');
 
@@ -47,7 +54,14 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
   const handlePhoneChange = (e) => {
     const value = e.target.value;
-    const formatted = formatPhone(value);
+    
+    let formatted = value;
+    if (value && !value.startsWith('+7-') && /^\d/.test(value)) {
+      formatted = '+7-' + value.replace(/\D/g, '');
+    } else {
+      formatted = formatPhone(value);
+    }
+    
     setPhone(formatted);
 
     if (formatted.length === 16) {
@@ -59,6 +73,17 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
     }
   };
 
+  const handlePhoneFocus = () => {
+    if (!phone) {
+      setPhone('+7-');
+    }
+  };
+
+  const handlePhoneBlur = () => {
+    if (phone === '+7-') {
+      setPhone('');
+    }
+  };
 
   const getDisplayUnit = (title) => {
     if (title.toLowerCase().includes('tb') || title.toLowerCase().includes('тб')) {
@@ -100,9 +125,9 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
 
     return !hasNet;
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     const formData = new FormData(e.target);
     const formObject = Object.fromEntries(formData.entries());
@@ -127,11 +152,11 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
       }
     }
 
+    const currentPhone = phone;
 
-
-    if (!phone || phone.length < 16) {
+    if (!currentPhone || currentPhone.length < 16) {
       newErrors.phone = 'Введите полный номер телефона';
-    } else if (!validatePhone(phone)) {
+    } else if (!validatePhone(currentPhone)) {
       newErrors.phone = 'Неверный формат телефона';
     }
 
@@ -146,7 +171,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
     const orderData = {
       form: {
         ...formObject,
-        phone: phone
+        phone: currentPhone
       },
 
       configuration: {
@@ -213,6 +238,10 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
     }
   };
 
+  const renderHTML = (htmlString) => {
+    return { __html: htmlString };
+  };
+
   return (
     <div className={styles.modal}>
       <div
@@ -226,7 +255,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
         >
           ×
         </div>
-        <div className={styles.modal__title}>Форма заказа</div>
+        <div className={styles.modal__title}>{formTexts.title}</div>
 
         <div className={styles.modal__feature}>
           <strong>{name}</strong>
@@ -315,11 +344,11 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
         })}
 
         <div className={styles.resultPrice}>
-          Арендная плата в месяц с НДС {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
+          {formTexts.price} {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
         </div>
         {item.term === '12m' &&
           <div className={styles.resultPrice}>
-            Оплата за 12 мес. (-15%) с НДС {configData.nds}%: <strong>
+            {formTexts.year_price} {configData.nds}%: <strong>
               {(calcTotal(item, configData.nds).withNds * 12).toLocaleString('ru')} ₽
             </strong>
           </div>
@@ -364,7 +393,9 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
               name="phone"
               value={phone}
               onChange={handlePhoneChange}
-              placeholder="+7-XXX-XXX-XX-XX"
+              onFocus={handlePhoneFocus}
+              onBlur={handlePhoneBlur}
+              placeholder="Телефон"
               required
             />
             {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
@@ -379,14 +410,14 @@ export function Modal({ item, configData, setIsModalOpen, options, config }) {
             className={styles.btnMain}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Отправка...' : 'Заказать'}
+            {isSubmitting ? 'Отправка...' : formTexts.button}
           </button>
           <div className={styles.checkbox}>
-              <label>
-                <input type="checkbox" required/>
-                <span>Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a></span>
-              </label>
-            </div>
+            <label>
+              <input type="checkbox" required/>
+              <span dangerouslySetInnerHTML={renderHTML(formTexts.concent)} />
+            </label>
+          </div>
         </form>
 
       </div>

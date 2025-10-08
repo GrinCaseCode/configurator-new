@@ -397,6 +397,13 @@ export function Configurator({
           setIsModalOpen={(open) => setIsModalOpen(index, open)}
           options={options}
           config={config}
+           form={{
+            title: "Форма заказа",
+            price: "Арендная плата в месяц с НДС",
+            year_price: "Оплата за 12 мес. (-15%) с НДС", 
+            button: "Заказать",
+            concent: 'Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a>'
+          }}
         />
       )}
     </div>
