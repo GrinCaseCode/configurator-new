@@ -35,14 +35,14 @@ export function transformItemToConfigOptions(item) {
         price: parseInt(v.price || '0'),
         priceRaw: v.price,
         max: v.max ? parseInt(v.max) : null,
-        unitValue: v.value ? parseInt(v.value) : null
+        unitValue: v.value ? parseInt(v.value) : null,
+        quantity: v.quantity || 1
       }))
     };
   }
 
   return options;
 }
-
 
 export function calcTotal(item, nds = 0) {
   const { config, options, basePrice, term } = item;
@@ -66,13 +66,24 @@ export function calcTotal(item, nds = 0) {
 
     } else if (prop.multiple) {
       config[key].forEach(d => {
-        total += (prop.values[d.index]?.price || 0) * d.quantity;
+        const option = prop.values[d.index];
+        const optionPrice = option?.price || 0;
+        const optionQuantity = option?.quantity || 1;
+        const userQuantity = d.quantity || 1; 
+        total += optionPrice * optionQuantity * userQuantity;
       });
     } else if (prop.count) {
       const sel = config[key].selectedIndex;
-      total += (prop.values[sel]?.price || 0) * config[key].quantity;
+      const option = prop.values[sel];
+      const optionPrice = option?.price || 0;
+      const optionQuantity = option?.quantity || 1;
+      const userQuantity = config[key].quantity || 1;
+      total += optionPrice * optionQuantity * userQuantity;
     } else {
-      total += prop.values[config[key]]?.price || 0;
+      const selectedOption = prop.values[config[key]];
+      const optionPrice = selectedOption?.price || 0;
+      const optionQuantity = selectedOption?.quantity || 1;
+      total += optionPrice * optionQuantity;
     }
   }
 

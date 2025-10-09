@@ -44,7 +44,6 @@ export function Configurator({
     );
   };
 
-
   const getFirstAvailableIndex = (property, currentConfig) => {
     const selectedIndices = currentConfig.map(item => item.index);
 
@@ -54,6 +53,21 @@ export function Configurator({
       }
     }
     return 0;
+  };
+
+  const formatOptionDisplay = (option, currentQuantity = 1) => {
+    if (option.quantity && option.quantity > 1) {
+      return `${option.quantity} × ${option.title}`;
+    }
+    return option.title;
+  };
+
+  const calculateOptionPrice = (option, currentQuantity = 1) => {
+    const basePrice = option.price || 0;
+    if (option.quantity && option.quantity > 1) { 
+      return basePrice * option.quantity;
+    }
+    return basePrice;
   };
 
   const renderRamBlock = () => {
@@ -112,7 +126,8 @@ export function Configurator({
           >
             {ramProp.values.map((opt, idx) => (
               <option key={idx} value={idx} hidden={idx !== activeIndex}>
-                {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
+                {formatOptionDisplay(opt, totalModules)} 
+                {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, totalModules)} руб.` : ''}
               </option>
             ))}
           </select>
@@ -175,7 +190,6 @@ export function Configurator({
     );
   };
 
-
   return (
     <div className={styles.configurator} key={item.id}>
       <div className={styles.configurator__main}>
@@ -230,13 +244,15 @@ export function Configurator({
                 <p>{property.name}</p>
                 {config[key].map((itemValue, i) => {
                   const availableOptions = getAvailableOptions(property, config[key], i);
+                  const selectedOption = property.values[itemValue.index];
+                  const quantity = itemValue.quantity;
 
                   return (
                     <div className={styles.configurator__line} key={i}>
                       {(() => {
-                        const opt = property.values[itemValue.index];
+                        const opt = selectedOption;
                         const unit = opt?.unitValue || 0;
-                        const qty = itemValue.quantity;
+                        const qty = quantity;
                         const total = unit * qty;
                         const displayUnit = getDisplayUnit(opt.title);
                         const formattedValue = formatStorageValue(total, displayUnit);
@@ -249,9 +265,8 @@ export function Configurator({
                       })()}
 
                       {property.values.length === 1 ? (
-                        <div className={styles.singleOption}
-                        >
-                          {property.values[0].title}
+                        <div className={styles.singleOption}>
+                          {formatOptionDisplay(selectedOption, quantity)}
                         </div>
                       ) : (
                         <select
@@ -264,13 +279,14 @@ export function Configurator({
                         >
                           {availableOptions.map((opt, idx) => (
                             <option key={idx} value={property.values.indexOf(opt)}>
-                              {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
+                              {formatOptionDisplay(opt, quantity)} 
+                              {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, quantity)} руб.` : ''}
                             </option>
                           ))}
                         </select>
                       )}
 
-                      {property.max > 1 && property.values[itemValue.index]?.title?.toLowerCase() !== 'нет' && (
+                      {property.max > 1 && selectedOption?.title?.toLowerCase() !== 'нет' && (
                         <div className={styles.quantity}>
                           <button
                             className={styles.quantity__btn}
@@ -282,7 +298,7 @@ export function Configurator({
                           >
                             -
                           </button>
-                          <input type="number" value={itemValue.quantity} readOnly />
+                          <input type="number" value={quantity} readOnly />
                           <button
                             className={`${styles.quantity__btn} ${config[key].reduce((sum, it) => sum + it.quantity, 0) >= property.max ? styles.disabled : ''}`}
                             onClick={() => {
@@ -375,7 +391,8 @@ export function Configurator({
                 >
                   {property.values.map((opt, idx) => (
                     <option key={idx} value={idx}>
-                      {opt.title} {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${opt.price} руб.` : ''}
+                      {formatOptionDisplay(opt, quantity)} 
+                      {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, quantity)} руб.` : ''}
                     </option>
                   ))}
                 </select>
@@ -397,7 +414,7 @@ export function Configurator({
           setIsModalOpen={(open) => setIsModalOpen(index, open)}
           options={options}
           config={config}
-           form={{
+          form={{
             title: "Форма заказа",
             price: "Арендная плата в месяц с НДС",
             year_price: "Оплата за 12 мес. (-15%) с НДС", 

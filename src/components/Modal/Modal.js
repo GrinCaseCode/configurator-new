@@ -77,7 +77,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
     if (!phone) {
       setPhone('+7-');
     }
-  };
+  }; 
 
   const handlePhoneBlur = () => {
     if (phone === '+7-') {
@@ -124,6 +124,13 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
     }
 
     return !hasNet;
+  };
+
+  const formatOptionDisplay = (option, userQuantity = 1) => {
+    if (option.quantity && option.quantity > 1) {
+      return `${option.quantity} × ${option.title}`;
+    }
+    return option.title;
   };
 
   const handleSubmit = async (e) => {
@@ -191,24 +198,29 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
     Object.entries(options).forEach(([key, property]) => {
       if (key === 'RAM') {
         const ramConfig = config[key];
+        const activeValue = property.values[ramConfig.selectedIndex];
         orderData.configuration.selectedOptions[key] = {
           name: property.name,
-          value: `${ramConfig.totalModules} × ${property.values[ramConfig.selectedIndex]?.title}`,
+          value: `${ramConfig.totalModules} × ${activeValue.title}`,
           price: property.values[ramConfig.selectedIndex]?.price * ramConfig.totalModules
         };
       } else if (Array.isArray(config[key])) {
-        orderData.configuration.selectedOptions[key] = config[key].map(item => ({
-          name: property.name,
-          value: property.values[item.index]?.title,
-          quantity: item.quantity,
-          price: property.values[item.index]?.price * item.quantity
-        }));
+        orderData.configuration.selectedOptions[key] = config[key].map(item => {
+          const option = property.values[item.index];
+          return {
+            name: property.name,
+            value: formatOptionDisplay(option, item.quantity),
+            quantity: item.quantity,
+            price: (property.values[item.index]?.price || 0) * item.quantity
+          };
+        });
       } else {
         const selectedIndex = config[key]?.selectedIndex ?? config[key];
+        const selectedOption = property.values[selectedIndex];
         orderData.configuration.selectedOptions[key] = {
           name: property.name,
-          value: property.values[selectedIndex]?.title,
-          price: property.values[selectedIndex]?.price
+          value: formatOptionDisplay(selectedOption),
+          price: property.values[selectedIndex]?.price || 0
         };
       }
     });
@@ -279,7 +291,8 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
 
             return (
               <div className={styles.modal__feature} key={key}>
-                <span>{property.name}:</span> {formattedValue}GB <br />  {totalModules} × {displayUnit} {activeValue.title}
+                <span>{property.name}:</span> {formattedValue}GB <br />  
+                {totalModules} × {displayUnit} {activeValue.title}
               </div>
             );
           }
@@ -304,9 +317,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
 
               return (
                 <div key={i}>
-                  {d.quantity > 1 ? `${d.quantity} × ` : ''}
-                  {itemVal.title}
-
+                  {formatOptionDisplay(itemVal, d.quantity)}
                 </div>
               );
             });
@@ -333,12 +344,13 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
             );
           }
 
-          const selected = property.values[config[key]];
+          const selectedIndex = config[key]?.selectedIndex ?? config[key];
+          const selected = property.values[selectedIndex];
           if (!selected || selected.title.toLowerCase() === 'нет') return null;
 
           return (
             <div className={styles.modal__feature} key={key}>
-              <span>{property.name}:</span> {selected.title}
+              <span>{property.name}:</span> {formatOptionDisplay(selected)}
             </div>
           );
         })}
