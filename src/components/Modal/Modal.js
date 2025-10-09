@@ -420,7 +420,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
           <button
             type="submit"
             className={styles.btnMain}
-            disabled={isSubmitting}
+            disabled={isSubmitting} 
           >
             {isSubmitting ? 'Отправка...' : formTexts.button}
           </button>
