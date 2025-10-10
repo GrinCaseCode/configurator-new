@@ -5,7 +5,7 @@ import { Configurator } from './components/Configurator/Configurator';
 import { transformItemToConfigOptions } from './utils/priceCalculations';
 
 function App() {
-  const [configData, setConfigData] = useState({ nds: 0, items: [] });
+  const [configData, setConfigData] = useState({ nds: 0, items: [], form: {} });
   const [activeFilter, setActiveFilter] = useState(null);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ function App() {
     const parsedData = JSON.parse(jsonString);
 
     const ndsValue = parsedData.nds || 0;
+    const formData = parsedData.form || {};  
 
     const configs = Object.values(parsedData)
       .filter(item => item && item.ID)
@@ -57,6 +58,7 @@ function App() {
 
     setConfigData({
       nds: ndsValue,
+      form: formData,
       items: configs
     });
   }, []);

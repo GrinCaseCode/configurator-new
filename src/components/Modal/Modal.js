@@ -8,20 +8,20 @@ const validatePhone = (phone) => {
   return phoneRegex.test(phone) && phone.length === 16;
 };
 
-export function Modal({ item, configData, setIsModalOpen, options, config, form = {} }) {
+export function Modal({ item, configData, setIsModalOpen, options, config }) {
   const { name } = item;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
   const [phone, setPhone] = useState('');
 
-  const formTexts = { 
-    title: form.title || 'Форма заказа',
-    price: form.price || 'Арендная плата в месяц с НДС',
-    year_price: form.year_price || 'Оплата за 12 мес. (-15%) с НДС',
-    button: form.button || 'Заказать',
-    concent: form.concent || 'Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a>'
-  };
+const formTexts = {
+  title: configData?.form?.title || 'Форма заказа', 
+  price: configData?.form?.price || 'Арендная плата в месяц с НДС',
+  year_price: configData?.form?.year_price || 'Оплата за 12 мес. (-15%) с НДС',
+  button: configData?.form?.button || 'Заказать',
+  concent: configData?.form?.concent || 'Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a>'
+};
  
   const formatPhone = (value) => {
     let numbers = value.replace(/\D/g, '');
@@ -356,7 +356,7 @@ export function Modal({ item, configData, setIsModalOpen, options, config, form 
         })}
 
         <div className={styles.resultPrice}>
-          {formTexts.price} {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
+          {formTexts.price}  <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
         </div>
         {item.term === '12m' &&
           <div className={styles.resultPrice}>

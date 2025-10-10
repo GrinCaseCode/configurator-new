@@ -24,7 +24,7 @@ export function Configurator({
 
   const formatStorageValue = (value, unit) => {
     if (unit === 'TB') {
-      return (value / 1024).toFixed(1);
+      return (value / 1024).toFixed(1); 
     }
     return value;
   };
@@ -408,20 +408,13 @@ export function Configurator({
       <button className={styles.btnMain} onClick={() => setIsModalOpen(index, true)}>Заказать</button>
 
       {isModalOpen && (
-        <Modal
-          item={item}
-          configData={configData}
-          setIsModalOpen={(open) => setIsModalOpen(index, open)}
-          options={options}
-          config={config}
-          form={{
-            title: "Форма заказа",
-            price: "Арендная плата в месяц с НДС",
-            year_price: "Оплата за 12 мес. (-15%) с НДС", 
-            button: "Заказать",
-            concent: 'Нажимая на кнопку «Заказать» я даю <a href="#">Согласие</a> на обработку персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a>'
-          }}
-        />
+       <Modal
+        item={item}
+        configData={configData}
+        setIsModalOpen={(open) => setIsModalOpen(index, open)}
+        options={options}
+        config={config}
+      />
       )}
     </div>
   );
