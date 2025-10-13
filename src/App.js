@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import { Filter } from './components/Filter/Filter';
 import { Configurator } from './components/Configurator/Configurator';
-import { transformItemToConfigOptions } from './utils/priceCalculations';
+import { transformItemToConfigOptions, getDefaultSelectedIndex  } from './utils/priceCalculations';
 
 function App() {
   const [configData, setConfigData] = useState({ nds: 0, items: [], form: {} });
@@ -36,9 +36,11 @@ function App() {
             defaultConfig[key].totalModules = step;
             defaultConfig[key].selectedIndex = 0;
           } else if (prop.multiple) {
-            defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
+              const defaultIndex = getDefaultSelectedIndex(prop);
+              defaultConfig[key] = [{ index: defaultIndex, quantity: prop.min || 1 }];
           } else {
-            defaultConfig[key] = 0;
+            const defaultIndex = getDefaultSelectedIndex(prop);
+            defaultConfig[key] = defaultIndex;
           }
         }
 

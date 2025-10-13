@@ -11,16 +11,20 @@ export function transformItemToConfigOptions(item) {
       values = values.filter(v => v.title.toLowerCase() !== 'выберите значение');
     }
 
+    const hasNetOption = values.some(v => v.title.toLowerCase() === 'нет');
+    const allDefaultFalse = values.every(v => !v.default_selected);
+
     if (
       key !== 'RAM' &&
-      values.length > 0 &&
-      !values.some(v => v.title.toLowerCase() === 'нет') &&
-      parseInt(values[0].price || '0') !== 0
+      !hasNetOption &&
+      allDefaultFalse &&
+      values.length > 0
     ) {
       values.unshift({
         title: 'Нет',
         price: 0,
-        value: 0
+        value: 0,
+        default_selected: true 
       });
     }
 
@@ -36,12 +40,26 @@ export function transformItemToConfigOptions(item) {
         priceRaw: v.price,
         max: v.max ? parseInt(v.max) : null,
         unitValue: v.value ? parseInt(v.value) : null,
-        quantity: v.quantity || 1
+        quantity: v.quantity || 1,
+        default_selected: v.default_selected || false
       }))
     };
   }
 
   return options;
+}
+export function getDefaultSelectedIndex(property) {
+  const defaultSelectedIndex = property.values.findIndex(opt => opt.default_selected === true);
+  if (defaultSelectedIndex !== -1) {
+    return defaultSelectedIndex;
+  }
+  
+  const netIndex = property.values.findIndex(opt => opt.title.toLowerCase() === 'нет');
+  if (netIndex !== -1) {
+    return netIndex;
+  }
+  
+  return 0;
 }
 
 export function calcTotal(item, nds = 0) {
