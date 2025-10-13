@@ -200,6 +200,7 @@
 	border: 1px solid #8F919B;
 	position: relative;
 	flex: none;
+  cursor: pointer;
 }
 .checkbox label input::before {
 	position: absolute;
