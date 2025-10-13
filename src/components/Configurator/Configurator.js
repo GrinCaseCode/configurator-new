@@ -127,7 +127,7 @@ export function Configurator({
             {ramProp.values.map((opt, idx) => (
               <option key={idx} value={idx} hidden={idx !== activeIndex}>
                 {formatOptionDisplay(opt, totalModules)} 
-                {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, totalModules)} руб.` : ''}
+                {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, totalModules)} руб.` : ''}
               </option>
             ))}
           </select>
@@ -280,7 +280,7 @@ export function Configurator({
                           {availableOptions.map((opt, idx) => (
                             <option key={idx} value={property.values.indexOf(opt)}>
                               {formatOptionDisplay(opt, quantity)} 
-                              {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, quantity)} руб.` : ''}
+                              {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, quantity)} руб.` : ''}
                             </option>
                           ))}
                         </select>
@@ -392,11 +392,11 @@ export function Configurator({
                   {property.values.map((opt, idx) => (
                     <option key={idx} value={idx}>
                       {formatOptionDisplay(opt, quantity)} 
-                      {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? `+ ${calculateOptionPrice(opt, quantity)} руб.` : ''}
+                      {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, quantity)} руб.` : ''}
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> 
             </label>
           );
         })}

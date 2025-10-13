@@ -356,7 +356,7 @@ const formTexts = {
         })}
 
         <div className={styles.resultPrice}>
-          {formTexts.price}  <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
+          {formTexts.price} {configData.nds}%: <strong>{calcTotal(item, configData.nds).withNds.toLocaleString('ru')} ₽</strong>
         </div>
         {item.term === '12m' &&
           <div className={styles.resultPrice}>
