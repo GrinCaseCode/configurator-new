@@ -70,125 +70,141 @@ export function Configurator({
     return basePrice;
   };
 
-  const renderRamBlock = () => {
-    const ramProp = options.RAM;
-    const ramConfig = config.RAM;
+ const renderRamBlock = () => {
+  const ramProp = options.RAM;
+  
+  // Определяем шаг и начальное количество
+  const step = ramProp.stepOverride 
+    ? parseInt(ramProp.stepOverride) 
+    : (ramProp.chetnoe ? 2 : 1);
+  
 
-    const maxModules = parseInt(ramProp.max) || 16;
+  return (
+    <label className={styles.configurator__item} key="RAM">
+      <p>{ramProp.name}</p>
+      {config.RAM.map((itemValue, i) => {
+        const availableOptions = getAvailableOptions(ramProp, config.RAM, i);
+        const selectedOption = ramProp.values[itemValue.index];
+        const quantity = itemValue.quantity;
 
-    const step = ramProp.stepOverride
-      ? parseInt(ramProp.stepOverride)
-      : (ramProp.chetnoe ? 2 : 1);
+        const freeModules = step;
+        const paidModules = Math.max(0, quantity - freeModules);
 
-    const minModules = ramProp.stepOverride
-      ? parseInt(ramProp.stepOverride)
-      : (ramProp.chetnoe ? 2 : 1);
+        return (
+          <div className={styles.configurator__line} key={i}>
+            {(() => {
+              const opt = selectedOption;
+              const unit = opt?.unitValue || 0; 
+              const qty = quantity;
+              const total = unit * qty;
+              const displayUnit = getDisplayUnit(opt.title);
+              const formattedValue = formatStorageValue(total, displayUnit);
 
-    const activeIndex = ramConfig.selectedIndex || 0;
-    const activeValue = ramProp.values[activeIndex];
-    const totalModules = ramConfig.totalModules || minModules;
-    const totalValue = activeValue.unitValue * totalModules;
+              return total > 0 ? (
+                <div className={styles.configurator__sum}>
+                  {formattedValue} {displayUnit}
+                </div>
+              ) : null;
+            })()}
 
-    const calculateNextTypeInitialValue = () => {
-      if (activeIndex < ramProp.values.length - 1) {
-        const currentTotalGB = totalValue;
-        const nextType = ramProp.values[activeIndex + 1];
-        const nextTypeGB = nextType.unitValue;
+            {ramProp.values.length === 1 ? (
+              <div className={styles.singleOption}>
+                {formatOptionDisplay(selectedOption, quantity)}
+              </div>
+            ) : (
+              <select
+                value={itemValue.index}
+                onChange={(e) => {
+                  const updated = [...config.RAM];
+                  updated[i].index = +e.target.value;
+                  updated[i].quantity = step;
+                  updateConfig(index, { ...config, RAM: updated });
+                }}
+              >
+                {availableOptions.map((opt, idx) => (
+                  <option key={idx} value={ramProp.values.indexOf(opt)}>
+                    {formatOptionDisplay(opt, quantity)} 
+                    {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, paidModules)} руб.` : ''}
+                  </option>
+                ))}
+              </select>
+            )}
 
-        const baseModules = Math.ceil(currentTotalGB / nextTypeGB);
+            {ramProp.max > 1 && selectedOption?.title?.toLowerCase() !== 'нет' && (
+              <div className={styles.quantity}>
+                <button
+                  className={styles.quantity__btn}
+                  onClick={() => {
+                    const updated = [...config.RAM];
+                    const newQuantity = Math.max(step, updated[i].quantity - step);
+                    updated[i].quantity = newQuantity;
+                    updateConfig(index, { ...config, RAM: updated });
+                  }}
+                  disabled={quantity <= step}
+                >
+                  -
+                </button>
+                <input type="number" value={quantity} readOnly />
+                <button
+                  className={`${styles.quantity__btn} ${config.RAM.reduce((sum, it) => sum + it.quantity, 0) >= ramProp.max ? styles.disabled : ''}`}
+                  onClick={() => {
+                    const totalQty = config.RAM.reduce((sum, it) => sum + it.quantity, 0);
+                    if (totalQty < ramProp.max) {
+                      const updated = [...config.RAM];
+                      updated[i].quantity += step;
+                      updateConfig(index, { ...config, RAM: updated });
+                    }
+                  }}
+                >
+                  +
+                </button>
+              </div>
+            )}
 
-        const calculatedValue = baseModules + step;
-        return Math.min(calculatedValue, maxModules);
-      }
-      return minModules;
-    };
-
-    const calculatedInitialValue = calculateNextTypeInitialValue();
-
-    return (
-      <label className={styles.configurator__item} key="RAM">
-        <p>{ramProp.name}</p>
-        <div className={styles.configurator__line}>
-          <div className={styles.configurator__sum}>
-            {totalValue} {getDisplayUnit(activeValue.title)}
+            {i > 0 && (
+              <div
+                className={styles.btnRemoveLine}
+                onClick={() => {
+                  const updated = config.RAM.filter((_, idx) => idx !== i);
+                  updateConfig(index, { ...config, RAM: updated });
+                }}
+              >
+                X
+              </div>
+            )}
           </div>
+        );
+      })}
 
-          <select
-            value={activeIndex}
-            onChange={(e) => {
-              const newIndex = parseInt(e.target.value, 10);
-              const updated = { ...config };
-              updated.RAM.selectedIndex = newIndex;
-              updated.RAM.totalModules = minModules;
-              updateConfig(index, updated);
+      {ramProp.max > 1 &&
+        config.RAM.length < countValidOptions(ramProp) &&
+        config.RAM.reduce((sum, it) => sum + it.quantity, 0) < ramProp.max &&
+        !config.RAM.some(item => {
+          const opt = ramProp.values[item.index];
+          return opt && opt.title.toLowerCase() === 'нет';
+        }) && (
+          <div
+            className={styles.btnAddLine}
+            onClick={() => {
+              const totalQty = config.RAM.reduce((sum, it) => sum + it.quantity, 0);
+              if (totalQty < ramProp.max) {
+                const firstAvailableIndex = getFirstAvailableIndex(ramProp, config.RAM);
+                updateConfig(index, {
+                  ...config,
+                  RAM: [...config.RAM, { 
+                    index: firstAvailableIndex,
+                    quantity: step 
+                  }]
+                });
+              }
             }}
-            className={styles.ramSelect}
-          >
-            {ramProp.values.map((opt, idx) => (
-              <option key={idx} value={idx} hidden={idx !== activeIndex}>
-                {formatOptionDisplay(opt, totalModules)} 
-                {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, totalModules)} руб.` : ''}
-              </option>
-            ))}
-          </select>
-
-          <div className={styles.quantity}>
-            <button
-              className={styles.quantity__btn}
-              onClick={() => {
-                const updated = { ...config };
-
-                if (totalModules > minModules) {
-                  if (activeIndex > 0 && totalModules === (ramConfig.switchValue || calculatedInitialValue)) {
-                    updated.RAM.selectedIndex = activeIndex - 1;
-                    updated.RAM.totalModules = maxModules;
-                  } else {
-                    updated.RAM.totalModules = totalModules - step;
-                  }
-                } else {
-                  if (activeIndex > 0) {
-                    updated.RAM.selectedIndex = activeIndex - 1;
-                    updated.RAM.totalModules = maxModules;
-                  }
-                }
-
-                updateConfig(index, updated);
-              }}
-            >
-              -
-            </button>
-
-            <input type="number" value={totalModules} readOnly />
-
-            <button
-              className={`${styles.quantity__btn} ${(totalModules >= maxModules && activeIndex === ramProp.values.length - 1) ||
-                  (activeIndex < ramProp.values.length - 1 && calculatedInitialValue >= maxModules)
-                  ? styles.disabled
-                  : ''
-                }`}
-              onClick={() => {
-                const updated = { ...config };
-
-                if (totalModules < maxModules) {
-                  updated.RAM.totalModules = totalModules + step;
-                } else {
-                  if (activeIndex < ramProp.values.length - 1) {
-                    updated.RAM.selectedIndex = activeIndex + 1;
-                    updated.RAM.totalModules = calculatedInitialValue;
-                    updated.RAM.switchValue = calculatedInitialValue;
-                  }
-                }
-
-                updateConfig(index, updated);
-              }}
-            >
-              +
-            </button>
+          > 
+            <strong>+</strong> Добавить ещё
           </div>
-        </div>
-      </label>
-    );
-  };
+        )}
+    </label>
+  );
+};
 
   return (
     <div className={styles.configurator} key={item.id}>
@@ -325,7 +341,7 @@ export function Configurator({
                         >
                           X
                         </div>
-                      )}
+                      )} 
                     </div>
                   );
                 })}

@@ -68,20 +68,25 @@ export function calcTotal(item, nds = 0) {
 
   for (const [key, prop] of Object.entries(options)) {
     if (key === 'RAM') {
-      const ramConfig = config[key];
-      const activeIndex = ramConfig.selectedIndex || 0;
-      const activeValue = prop.values[activeIndex];
-      const totalModules = ramConfig.totalModules || 1;
-
-      let ramModules = [];
-      for (let i = 0; i < totalModules; i++) {
-        ramModules.push(activeValue.price);
-      }
-      ramModules.sort((a, b) => a - b);
-      ramModules = ramModules.slice(2);
-
-      total += ramModules.reduce((sum, price) => sum + price, 0);
-
+      // ОСОБАЯ ЛОГИКА ДЛЯ RAM С УЧЕТОМ БЕСПЛАТНЫХ МОДУЛЕЙ
+      config[key].forEach(d => {
+        const option = prop.values[d.index];
+        const optionPrice = option?.price || 0;
+        
+        // Определяем шаг (бесплатные модули)
+        const step = prop.stepOverride 
+          ? parseInt(prop.stepOverride) 
+          : (prop.chetnoe ? 2 : 1);
+        
+        const userQuantity = d.quantity || step;
+        
+        // Рассчитываем платные модули (исключаем бесплатные)
+        const freeModules = step;
+        const paidModules = Math.max(0, userQuantity - freeModules);
+        
+        total += optionPrice * paidModules;
+      });
+      
     } else if (prop.multiple) {
       config[key].forEach(d => {
         const option = prop.values[d.index];
@@ -109,7 +114,7 @@ export function calcTotal(item, nds = 0) {
     total = total * 0.85;
   }
 
-  return {
+  return { 
     base: Math.round(total),
     withNds: Math.round(total * (1 + nds / 100))
   };

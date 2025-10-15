@@ -26,6 +26,9 @@
 .configurator__row {
   display: block;
 }
+.btnRemoveLine {
+  cursor: pointer;
+}
 .configurator__main {
   width: 100%;
   flex: none;

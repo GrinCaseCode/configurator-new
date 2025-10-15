@@ -27,12 +27,17 @@ function App() {
         const defaultConfig = {};
         for (const [key, prop] of Object.entries(options)) {
           if (key === 'RAM') {
-            defaultConfig[key] = [{ index: 0, quantity: prop.min || 1 }];
-
-            const step = prop.stepOverride
-              ? parseInt(prop.stepOverride)
+                const step = prop.stepOverride 
+              ? parseInt(prop.stepOverride) 
               : (prop.chetnoe ? 2 : 1);
 
+              
+              defaultConfig[key] = [{ 
+    index: 0, 
+    quantity: step // Начинаем с шага
+  }];
+
+         
             defaultConfig[key].totalModules = step;
             defaultConfig[key].selectedIndex = 0;
           } else if (prop.multiple) {
