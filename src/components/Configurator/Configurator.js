@@ -70,14 +70,12 @@ export function Configurator({
     return basePrice;
   };
 
- const renderRamBlock = () => {
+const renderRamBlock = () => {
   const ramProp = options.RAM;
   
-  // Определяем шаг и начальное количество
   const step = ramProp.stepOverride 
     ? parseInt(ramProp.stepOverride) 
     : (ramProp.chetnoe ? 2 : 1);
-  
 
   return (
     <label className={styles.configurator__item} key="RAM">
@@ -107,28 +105,22 @@ export function Configurator({
               ) : null;
             })()}
 
-            {ramProp.values.length === 1 ? (
-              <div className={styles.singleOption}>
-                {formatOptionDisplay(selectedOption, quantity)}
-              </div>
-            ) : (
-              <select
-                value={itemValue.index}
-                onChange={(e) => {
-                  const updated = [...config.RAM];
-                  updated[i].index = +e.target.value;
-                  updated[i].quantity = step;
-                  updateConfig(index, { ...config, RAM: updated });
-                }}
-              >
-                {availableOptions.map((opt, idx) => (
-                  <option key={idx} value={ramProp.values.indexOf(opt)}>
-                    {formatOptionDisplay(opt, quantity)} 
-                    {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, paidModules)} руб.` : ''}
-                  </option>
-                ))}
-              </select>
-            )}
+            <select
+              value={itemValue.index}
+              onChange={(e) => {
+                const updated = [...config.RAM];
+                updated[i].index = +e.target.value;
+                updated[i].quantity = step;
+                updateConfig(index, { ...config, RAM: updated });
+              }}
+            >
+              {availableOptions.map((opt, idx) => (
+                <option key={idx} value={ramProp.values.indexOf(opt)}>
+                  {formatOptionDisplay(opt, quantity)} 
+                  {(opt.priceRaw && parseInt(opt.priceRaw) !== 0) ? ` + ${calculateOptionPrice(opt, paidModules)} руб.` : ''}
+                </option>
+              ))}
+            </select>
 
             {ramProp.max > 1 && selectedOption?.title?.toLowerCase() !== 'нет' && (
               <div className={styles.quantity}>
@@ -161,47 +153,10 @@ export function Configurator({
               </div>
             )}
 
-            {i > 0 && (
-              <div
-                className={styles.btnRemoveLine}
-                onClick={() => {
-                  const updated = config.RAM.filter((_, idx) => idx !== i);
-                  updateConfig(index, { ...config, RAM: updated });
-                }}
-              >
-                X
-              </div>
-            )}
           </div>
         );
       })}
 
-      {ramProp.max > 1 &&
-        config.RAM.length < countValidOptions(ramProp) &&
-        config.RAM.reduce((sum, it) => sum + it.quantity, 0) < ramProp.max &&
-        !config.RAM.some(item => {
-          const opt = ramProp.values[item.index];
-          return opt && opt.title.toLowerCase() === 'нет';
-        }) && (
-          <div
-            className={styles.btnAddLine}
-            onClick={() => {
-              const totalQty = config.RAM.reduce((sum, it) => sum + it.quantity, 0);
-              if (totalQty < ramProp.max) {
-                const firstAvailableIndex = getFirstAvailableIndex(ramProp, config.RAM);
-                updateConfig(index, {
-                  ...config,
-                  RAM: [...config.RAM, { 
-                    index: firstAvailableIndex,
-                    quantity: step 
-                  }]
-                });
-              }
-            }}
-          > 
-            <strong>+</strong> Добавить ещё
-          </div>
-        )}
     </label>
   );
 };

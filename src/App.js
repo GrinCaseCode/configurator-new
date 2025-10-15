@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import { Filter } from './components/Filter/Filter';
 import { Configurator } from './components/Configurator/Configurator';
-import { transformItemToConfigOptions, getDefaultSelectedIndex  } from './utils/priceCalculations';
+import { transformItemToConfigOptions, getDefaultSelectedIndex } from './utils/priceCalculations';
 
 function App() {
   const [configData, setConfigData] = useState({ nds: 0, items: [], form: {} });
@@ -16,7 +16,7 @@ function App() {
     const parsedData = JSON.parse(jsonString);
 
     const ndsValue = parsedData.nds || 0;
-    const formData = parsedData.form || {};  
+    const formData = parsedData.form || {};
 
     const configs = Object.values(parsedData)
       .filter(item => item && item.ID)
@@ -27,22 +27,19 @@ function App() {
         const defaultConfig = {};
         for (const [key, prop] of Object.entries(options)) {
           if (key === 'RAM') {
-                const step = prop.stepOverride 
-              ? parseInt(prop.stepOverride) 
+            const step = prop.stepOverride
+              ? parseInt(prop.stepOverride)
               : (prop.chetnoe ? 2 : 1);
 
-              
-              defaultConfig[key] = [{ 
-    index: 0, 
-    quantity: step // Начинаем с шага
-  }];
 
-         
-            defaultConfig[key].totalModules = step;
-            defaultConfig[key].selectedIndex = 0;
+            defaultConfig[key] = [{
+              index: 0,
+              quantity: step 
+            }];
+
           } else if (prop.multiple) {
-              const defaultIndex = getDefaultSelectedIndex(prop);
-              defaultConfig[key] = [{ index: defaultIndex, quantity: prop.min || 1 }];
+            const defaultIndex = getDefaultSelectedIndex(prop);
+            defaultConfig[key] = [{ index: defaultIndex, quantity: prop.min || 1 }];
           } else {
             const defaultIndex = getDefaultSelectedIndex(prop);
             defaultConfig[key] = defaultIndex;
