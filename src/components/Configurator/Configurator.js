@@ -109,8 +109,7 @@ const renderRamBlock = () => {
               value={itemValue.index}
               onChange={(e) => {
                 const updated = [...config.RAM];
-                updated[i].index = +e.target.value;
-                updated[i].quantity = step;
+                updated[i].index = +e.target.value; 
                 updateConfig(index, { ...config, RAM: updated });
               }}
             >
